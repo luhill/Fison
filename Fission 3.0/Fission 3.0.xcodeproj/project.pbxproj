@@ -1,0 +1,712 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		370803791BF4219E00FF9A6F /* shader_texture.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 370803781BF4219E00FF9A6F /* shader_texture.vsh */; };
+		3708037B1BF421B100FF9A6F /* shader_texture.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3708037A1BF421B100FF9A6F /* shader_texture.fsh */; };
+		3708037D1BF4236100FF9A6F /* shader_particle.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 3708037C1BF4236100FF9A6F /* shader_particle.vsh */; };
+		3708037F1BF4236E00FF9A6F /* shader_particle.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3708037E1BF4236E00FF9A6F /* shader_particle.fsh */; };
+		370803811BF423A300FF9A6F /* shader_blur.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 370803801BF423A300FF9A6F /* shader_blur.vsh */; };
+		370803831BF423AF00FF9A6F /* shader_blur.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 370803821BF423AF00FF9A6F /* shader_blur.fsh */; };
+		370803871BF4474C00FF9A6F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 375DD5E11BF1D5C8002F848B /* AppDelegate.m */; };
+		370803881BF4474C00FF9A6F /* GlobalAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 375DD6061BF1DEC6002F848B /* GlobalAccess.m */; };
+		370803891BF4474C00FF9A6F /* SeeThroughView.m in Sources */ = {isa = PBXBuildFile; fileRef = 375DD6091BF2BE2B002F848B /* SeeThroughView.m */; };
+		3708038A1BF4474C00FF9A6F /* RadioStyleSegmentControl_Luke.m in Sources */ = {isa = PBXBuildFile; fileRef = 375DD60C1BF2BEC0002F848B /* RadioStyleSegmentControl_Luke.m */; };
+		3708038B1BF4474C00FF9A6F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 375DD5DE1BF1D5C8002F848B /* main.m */; };
+		3708038D1BF4474C00FF9A6F /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 375DD6031BF1DBFE002F848B /* MenuViewController.m */; };
+		375385FC1BFDA10E004CB31F /* shader_sprite.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 375385FB1BFDA10E004CB31F /* shader_sprite.vsh */; };
+		375385FE1BFDA11B004CB31F /* shader_sprite.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 375385FD1BFDA11B004CB31F /* shader_sprite.fsh */; };
+		375386011C02C6F1004CB31F /* Fission_Interface.m in Sources */ = {isa = PBXBuildFile; fileRef = 375386001C02C6F1004CB31F /* Fission_Interface.m */; };
+		375386041C0BF3D4004CB31F /* TrackTouch.m in Sources */ = {isa = PBXBuildFile; fileRef = 375386031C0BF3D4004CB31F /* TrackTouch.m */; };
+		375A1DDB1C16AC4200DE6DD8 /* shader_intro.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 375A1DDA1C16AC4200DE6DD8 /* shader_intro.vsh */; };
+		375A1DDD1C16AC5100DE6DD8 /* shader_intro.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 375A1DDC1C16AC5100DE6DD8 /* shader_intro.fsh */; };
+		375DD5ED1BF1D5C8002F848B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 375DD5EB1BF1D5C8002F848B /* LaunchScreen.xib */; };
+		37741C531C15225E00EAF336 /* shader_line_image.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 37741C521C15225E00EAF336 /* shader_line_image.vsh */; };
+		37741C551C15226A00EAF336 /* shader_line_image.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 37741C541C15226A00EAF336 /* shader_line_image.fsh */; };
+		37741C581C1653E000EAF336 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37741C571C1653E000EAF336 /* IntroViewController.m */; };
+		37741C5B1C1672D000EAF336 /* CustomRotatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37741C5A1C1672D000EAF336 /* CustomRotatingView.m */; };
+		379D09B21C0E83F700AF7C83 /* shader_sprite_basic.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 379D09B11C0E83F700AF7C83 /* shader_sprite_basic.vsh */; };
+		379D09B41C0E840E00AF7C83 /* shader_sprite_basic.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 379D09B31C0E840E00AF7C83 /* shader_sprite_basic.fsh */; };
+		379D09B61C10010500AF7C83 /* shader_line.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 379D09B51C10010500AF7C83 /* shader_line.vsh */; };
+		379D09B81C10011500AF7C83 /* shader_line.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 379D09B71C10011500AF7C83 /* shader_line.fsh */; };
+		379E97581C1E6D4B00082599 /* Fission.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C0F45C1BF46DDA00B51A48 /* Fission.m */; };
+		379E97591C1E6D4B00082599 /* Fission_Interface.m in Sources */ = {isa = PBXBuildFile; fileRef = 375386001C02C6F1004CB31F /* Fission_Interface.m */; };
+		379E975A1C1E6D4B00082599 /* GL_Touches.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C0F4511BF456C000B51A48 /* GL_Touches.m */; };
+		379E975B1C1E6D4B00082599 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 375DD5E11BF1D5C8002F848B /* AppDelegate.m */; };
+		379E975C1C1E6D4B00082599 /* GlobalAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 375DD6061BF1DEC6002F848B /* GlobalAccess.m */; };
+		379E975D1C1E6D4B00082599 /* GL_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C0F43E1BF4564B00B51A48 /* GL_ViewController.m */; };
+		379E975E1C1E6D4B00082599 /* SeeThroughView.m in Sources */ = {isa = PBXBuildFile; fileRef = 375DD6091BF2BE2B002F848B /* SeeThroughView.m */; };
+		379E975F1C1E6D4B00082599 /* RadioStyleSegmentControl_Luke.m in Sources */ = {isa = PBXBuildFile; fileRef = 375DD60C1BF2BEC0002F848B /* RadioStyleSegmentControl_Luke.m */; };
+		379E97601C1E6D4B00082599 /* GL_OpenGL.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C0F44D1BF456C000B51A48 /* GL_OpenGL.m */; };
+		379E97611C1E6D4B00082599 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 375DD5DE1BF1D5C8002F848B /* main.m */; };
+		379E97621C1E6D4B00082599 /* TrackTouch.m in Sources */ = {isa = PBXBuildFile; fileRef = 375386031C0BF3D4004CB31F /* TrackTouch.m */; };
+		379E97641C1E6D4B00082599 /* ShaderHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C0F4591BF456CF00B51A48 /* ShaderHelper.m */; };
+		379E97651C1E6D4B00082599 /* GL_Texture.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C0F44F1BF456C000B51A48 /* GL_Texture.m */; };
+		379E97661C1E6D4B00082599 /* GL_UpdateDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C0F4531BF456C000B51A48 /* GL_UpdateDraw.m */; };
+		379E97671C1E6D4B00082599 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 375DD6031BF1DBFE002F848B /* MenuViewController.m */; };
+		379E97681C1E6D4B00082599 /* CustomRotatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37741C5A1C1672D000EAF336 /* CustomRotatingView.m */; };
+		379E976C1C1E6D4B00082599 /* shader_collision.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 37C0F4601BF8227800B51A48 /* shader_collision.fsh */; };
+		379E976D1C1E6D4B00082599 /* shader_intro.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 375A1DDA1C16AC4200DE6DD8 /* shader_intro.vsh */; };
+		379E976E1C1E6D4B00082599 /* shader_sprite_basic.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 379D09B31C0E840E00AF7C83 /* shader_sprite_basic.fsh */; };
+		379E976F1C1E6D4B00082599 /* shader_sprite.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 375385FD1BFDA11B004CB31F /* shader_sprite.fsh */; };
+		379E97701C1E6D4B00082599 /* shader_line_image.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 37741C541C15226A00EAF336 /* shader_line_image.fsh */; };
+		379E97711C1E6D4B00082599 /* shader_particle.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 3708037C1BF4236100FF9A6F /* shader_particle.vsh */; };
+		379E97721C1E6D4B00082599 /* shader_line.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 379D09B71C10011500AF7C83 /* shader_line.fsh */; };
+		379E97731C1E6D4B00082599 /* shader_particle.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3708037E1BF4236E00FF9A6F /* shader_particle.fsh */; };
+		379E97741C1E6D4B00082599 /* shader_sprite_basic.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 379D09B11C0E83F700AF7C83 /* shader_sprite_basic.vsh */; };
+		379E97751C1E6D4B00082599 /* shader_blur.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 370803821BF423AF00FF9A6F /* shader_blur.fsh */; };
+		379E97761C1E6D4B00082599 /* shader_collision.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 37C0F45E1BF8226B00B51A48 /* shader_collision.vsh */; };
+		379E97771C1E6D4B00082599 /* shader_texture.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 370803781BF4219E00FF9A6F /* shader_texture.vsh */; };
+		379E97781C1E6D4B00082599 /* shader_blur.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 370803801BF423A300FF9A6F /* shader_blur.vsh */; };
+		379E97791C1E6D4B00082599 /* shader_sprite.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 375385FB1BFDA10E004CB31F /* shader_sprite.vsh */; };
+		379E977A1C1E6D4B00082599 /* shader_point.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 37C0F4621BF97CC200B51A48 /* shader_point.vsh */; };
+		379E977B1C1E6D4B00082599 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 375DD5E61BF1D5C8002F848B /* Main.storyboard */; };
+		379E977C1C1E6D4B00082599 /* shader_point.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 37C0F4641BF97CD000B51A48 /* shader_point.fsh */; };
+		379E977D1C1E6D4B00082599 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 375DD5EB1BF1D5C8002F848B /* LaunchScreen.xib */; };
+		379E977E1C1E6D4B00082599 /* shader_line_image.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 37741C521C15225E00EAF336 /* shader_line_image.vsh */; };
+		379E977F1C1E6D4B00082599 /* shader_texture.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3708037A1BF421B100FF9A6F /* shader_texture.fsh */; };
+		379E97801C1E6D4B00082599 /* shader_intro.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 375A1DDC1C16AC5100DE6DD8 /* shader_intro.fsh */; };
+		379E97811C1E6D4B00082599 /* shader_line.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 379D09B51C10010500AF7C83 /* shader_line.vsh */; };
+		379E97891C1E6EDF00082599 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 375DD5E91BF1D5C8002F848B /* Images.xcassets */; };
+		379E978A1C1E6EF800082599 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 375DD5E91BF1D5C8002F848B /* Images.xcassets */; };
+		379E978E1C1E734300082599 /* Paid Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 379E978D1C1E734300082599 /* Paid Images.xcassets */; };
+		379E978F1C1E735200082599 /* Free Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 379E978B1C1E732200082599 /* Free Images.xcassets */; };
+		379E97921C1E835200082599 /* TargetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 379E97911C1E835200082599 /* TargetViewController.m */; };
+		379E979B1C1E842C00082599 /* TargetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 379E97991C1E83F000082599 /* TargetViewController.m */; };
+		379E979C1C1E8DCD00082599 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 375DD5E61BF1D5C8002F848B /* Main.storyboard */; };
+		379E97A61C1E940400082599 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 379E97A41C1E929600082599 /* IntroViewController.m */; };
+		379E97A81C1E948500082599 /* InstructionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 379E97A71C1E948500082599 /* InstructionsViewController.m */; };
+		379E97A91C1E948F00082599 /* InstructionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 379E97A71C1E948500082599 /* InstructionsViewController.m */; };
+		379E97AC1C1E98BF00082599 /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 379E97AB1C1E98BF00082599 /* iRate.m */; };
+		379E97AD1C1E98BF00082599 /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 379E97AB1C1E98BF00082599 /* iRate.m */; };
+		37C0F4471BF4564B00B51A48 /* GL_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C0F43E1BF4564B00B51A48 /* GL_ViewController.m */; };
+		37C0F4541BF456C000B51A48 /* GL_OpenGL.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C0F44D1BF456C000B51A48 /* GL_OpenGL.m */; };
+		37C0F4551BF456C000B51A48 /* GL_Texture.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C0F44F1BF456C000B51A48 /* GL_Texture.m */; };
+		37C0F4561BF456C000B51A48 /* GL_Touches.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C0F4511BF456C000B51A48 /* GL_Touches.m */; };
+		37C0F4571BF456C000B51A48 /* GL_UpdateDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C0F4531BF456C000B51A48 /* GL_UpdateDraw.m */; };
+		37C0F45A1BF456D000B51A48 /* ShaderHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C0F4591BF456CF00B51A48 /* ShaderHelper.m */; };
+		37C0F45D1BF46DDA00B51A48 /* Fission.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C0F45C1BF46DDA00B51A48 /* Fission.m */; };
+		37C0F45F1BF8226B00B51A48 /* shader_collision.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 37C0F45E1BF8226B00B51A48 /* shader_collision.vsh */; };
+		37C0F4611BF8227800B51A48 /* shader_collision.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 37C0F4601BF8227800B51A48 /* shader_collision.fsh */; };
+		37C0F4631BF97CC200B51A48 /* shader_point.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 37C0F4621BF97CC200B51A48 /* shader_point.vsh */; };
+		37C0F4651BF97CD000B51A48 /* shader_point.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 37C0F4641BF97CD000B51A48 /* shader_point.fsh */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		370803781BF4219E00FF9A6F /* shader_texture.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader_texture.vsh; sourceTree = "<group>"; };
+		3708037A1BF421B100FF9A6F /* shader_texture.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader_texture.fsh; sourceTree = "<group>"; };
+		3708037C1BF4236100FF9A6F /* shader_particle.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader_particle.vsh; sourceTree = "<group>"; };
+		3708037E1BF4236E00FF9A6F /* shader_particle.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader_particle.fsh; sourceTree = "<group>"; };
+		370803801BF423A300FF9A6F /* shader_blur.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader_blur.vsh; sourceTree = "<group>"; };
+		370803821BF423AF00FF9A6F /* shader_blur.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader_blur.fsh; sourceTree = "<group>"; };
+		375385FB1BFDA10E004CB31F /* shader_sprite.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader_sprite.vsh; sourceTree = "<group>"; };
+		375385FD1BFDA11B004CB31F /* shader_sprite.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader_sprite.fsh; sourceTree = "<group>"; };
+		375385FF1C02C6F1004CB31F /* Fission_Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fission_Interface.h; sourceTree = "<group>"; };
+		375386001C02C6F1004CB31F /* Fission_Interface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fission_Interface.m; sourceTree = "<group>"; };
+		375386021C0BF3D4004CB31F /* TrackTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackTouch.h; sourceTree = "<group>"; };
+		375386031C0BF3D4004CB31F /* TrackTouch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackTouch.m; sourceTree = "<group>"; };
+		375A1DDA1C16AC4200DE6DD8 /* shader_intro.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader_intro.vsh; sourceTree = "<group>"; };
+		375A1DDC1C16AC5100DE6DD8 /* shader_intro.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader_intro.fsh; sourceTree = "<group>"; };
+		375DD5D91BF1D5C8002F848B /* Fission 3.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fission 3.0.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		375DD5DD1BF1D5C8002F848B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		375DD5DE1BF1D5C8002F848B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		375DD5E01BF1D5C8002F848B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		375DD5E11BF1D5C8002F848B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		375DD5E71BF1D5C8002F848B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		375DD5E91BF1D5C8002F848B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		375DD5EC1BF1D5C8002F848B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		375DD6021BF1DBFE002F848B /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		375DD6031BF1DBFE002F848B /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		375DD6051BF1DEC6002F848B /* GlobalAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalAccess.h; sourceTree = "<group>"; };
+		375DD6061BF1DEC6002F848B /* GlobalAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalAccess.m; sourceTree = "<group>"; };
+		375DD6081BF2BE2B002F848B /* SeeThroughView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeeThroughView.h; sourceTree = "<group>"; };
+		375DD6091BF2BE2B002F848B /* SeeThroughView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeeThroughView.m; sourceTree = "<group>"; };
+		375DD60B1BF2BEC0002F848B /* RadioStyleSegmentControl_Luke.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadioStyleSegmentControl_Luke.h; sourceTree = "<group>"; };
+		375DD60C1BF2BEC0002F848B /* RadioStyleSegmentControl_Luke.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadioStyleSegmentControl_Luke.m; sourceTree = "<group>"; };
+		37741C521C15225E00EAF336 /* shader_line_image.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader_line_image.vsh; sourceTree = "<group>"; };
+		37741C541C15226A00EAF336 /* shader_line_image.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader_line_image.fsh; sourceTree = "<group>"; };
+		37741C561C1653E000EAF336 /* IntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
+		37741C571C1653E000EAF336 /* IntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroViewController.m; sourceTree = "<group>"; };
+		37741C591C1672D000EAF336 /* CustomRotatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomRotatingView.h; sourceTree = "<group>"; };
+		37741C5A1C1672D000EAF336 /* CustomRotatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomRotatingView.m; sourceTree = "<group>"; };
+		37741C5C1C1673F600EAF336 /* InstructionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstructionsViewController.h; sourceTree = "<group>"; };
+		379D09B11C0E83F700AF7C83 /* shader_sprite_basic.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader_sprite_basic.vsh; sourceTree = "<group>"; };
+		379D09B31C0E840E00AF7C83 /* shader_sprite_basic.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader_sprite_basic.fsh; sourceTree = "<group>"; };
+		379D09B51C10010500AF7C83 /* shader_line.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader_line.vsh; sourceTree = "<group>"; };
+		379D09B71C10011500AF7C83 /* shader_line.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader_line.fsh; sourceTree = "<group>"; };
+		379E97861C1E6D4B00082599 /* Fission Lite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fission Lite.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		379E97871C1E6D4B00082599 /* Fission 3.0 copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Fission 3.0 copy-Info.plist"; path = "/Users/luhill/Documents/Apps/Fission 3.0/Fission 3.0 copy-Info.plist"; sourceTree = "<absolute>"; };
+		379E978B1C1E732200082599 /* Free Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Free Images.xcassets"; sourceTree = "<group>"; };
+		379E978D1C1E734300082599 /* Paid Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Paid Images.xcassets"; sourceTree = "<group>"; };
+		379E97901C1E835200082599 /* TargetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TargetViewController.h; path = Paid/TargetViewController.h; sourceTree = "<group>"; };
+		379E97911C1E835200082599 /* TargetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TargetViewController.m; path = Paid/TargetViewController.m; sourceTree = "<group>"; };
+		379E97991C1E83F000082599 /* TargetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TargetViewController.m; path = Free/TargetViewController.m; sourceTree = "<group>"; };
+		379E97A41C1E929600082599 /* IntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IntroViewController.m; path = Free/IntroViewController.m; sourceTree = "<group>"; };
+		379E97A71C1E948500082599 /* InstructionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstructionsViewController.m; sourceTree = "<group>"; };
+		379E97AA1C1E98BF00082599 /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iRate.h; sourceTree = "<group>"; };
+		379E97AB1C1E98BF00082599 /* iRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iRate.m; sourceTree = "<group>"; };
+		37C0F43D1BF4564B00B51A48 /* GL_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GL_ViewController.h; sourceTree = "<group>"; };
+		37C0F43E1BF4564B00B51A48 /* GL_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GL_ViewController.m; sourceTree = "<group>"; };
+		37C0F44C1BF456C000B51A48 /* GL_OpenGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GL_OpenGL.h; sourceTree = "<group>"; };
+		37C0F44D1BF456C000B51A48 /* GL_OpenGL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GL_OpenGL.m; sourceTree = "<group>"; };
+		37C0F44E1BF456C000B51A48 /* GL_Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GL_Texture.h; sourceTree = "<group>"; };
+		37C0F44F1BF456C000B51A48 /* GL_Texture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GL_Texture.m; sourceTree = "<group>"; };
+		37C0F4501BF456C000B51A48 /* GL_Touches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GL_Touches.h; sourceTree = "<group>"; };
+		37C0F4511BF456C000B51A48 /* GL_Touches.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GL_Touches.m; sourceTree = "<group>"; };
+		37C0F4521BF456C000B51A48 /* GL_UpdateDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GL_UpdateDraw.h; sourceTree = "<group>"; };
+		37C0F4531BF456C000B51A48 /* GL_UpdateDraw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GL_UpdateDraw.m; sourceTree = "<group>"; };
+		37C0F4581BF456CF00B51A48 /* ShaderHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderHelper.h; sourceTree = "<group>"; };
+		37C0F4591BF456CF00B51A48 /* ShaderHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShaderHelper.m; sourceTree = "<group>"; };
+		37C0F45B1BF46DDA00B51A48 /* Fission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fission.h; sourceTree = "<group>"; };
+		37C0F45C1BF46DDA00B51A48 /* Fission.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fission.m; sourceTree = "<group>"; };
+		37C0F45E1BF8226B00B51A48 /* shader_collision.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader_collision.vsh; sourceTree = "<group>"; };
+		37C0F4601BF8227800B51A48 /* shader_collision.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader_collision.fsh; sourceTree = "<group>"; };
+		37C0F4621BF97CC200B51A48 /* shader_point.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader_point.vsh; sourceTree = "<group>"; };
+		37C0F4641BF97CD000B51A48 /* shader_point.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader_point.fsh; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		375DD5D61BF1D5C8002F848B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		379E976A1C1E6D4B00082599 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		370803651BF4118A00FF9A6F /* Gl View */ = {
+			isa = PBXGroup;
+			children = (
+				37C0F43D1BF4564B00B51A48 /* GL_ViewController.h */,
+				37C0F43E1BF4564B00B51A48 /* GL_ViewController.m */,
+				37C0F44C1BF456C000B51A48 /* GL_OpenGL.h */,
+				37C0F44D1BF456C000B51A48 /* GL_OpenGL.m */,
+				37C0F44E1BF456C000B51A48 /* GL_Texture.h */,
+				37C0F44F1BF456C000B51A48 /* GL_Texture.m */,
+				37C0F4501BF456C000B51A48 /* GL_Touches.h */,
+				37C0F4511BF456C000B51A48 /* GL_Touches.m */,
+				37C0F4521BF456C000B51A48 /* GL_UpdateDraw.h */,
+				37C0F4531BF456C000B51A48 /* GL_UpdateDraw.m */,
+			);
+			name = "Gl View";
+			sourceTree = "<group>";
+		};
+		370803771BF4215D00FF9A6F /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				370803781BF4219E00FF9A6F /* shader_texture.vsh */,
+				3708037A1BF421B100FF9A6F /* shader_texture.fsh */,
+				3708037C1BF4236100FF9A6F /* shader_particle.vsh */,
+				3708037E1BF4236E00FF9A6F /* shader_particle.fsh */,
+				370803801BF423A300FF9A6F /* shader_blur.vsh */,
+				370803821BF423AF00FF9A6F /* shader_blur.fsh */,
+				37C0F45E1BF8226B00B51A48 /* shader_collision.vsh */,
+				37C0F4601BF8227800B51A48 /* shader_collision.fsh */,
+				37C0F4621BF97CC200B51A48 /* shader_point.vsh */,
+				37C0F4641BF97CD000B51A48 /* shader_point.fsh */,
+				379D09B51C10010500AF7C83 /* shader_line.vsh */,
+				379D09B71C10011500AF7C83 /* shader_line.fsh */,
+				375385FB1BFDA10E004CB31F /* shader_sprite.vsh */,
+				375385FD1BFDA11B004CB31F /* shader_sprite.fsh */,
+				379D09B11C0E83F700AF7C83 /* shader_sprite_basic.vsh */,
+				379D09B31C0E840E00AF7C83 /* shader_sprite_basic.fsh */,
+				37741C521C15225E00EAF336 /* shader_line_image.vsh */,
+				37741C541C15226A00EAF336 /* shader_line_image.fsh */,
+				375A1DDA1C16AC4200DE6DD8 /* shader_intro.vsh */,
+				375A1DDC1C16AC5100DE6DD8 /* shader_intro.fsh */,
+			);
+			path = Shaders;
+			sourceTree = "<group>";
+		};
+		375DD5D01BF1D5C8002F848B = {
+			isa = PBXGroup;
+			children = (
+				375DD5DB1BF1D5C8002F848B /* Fission 3.0 */,
+				375DD5DA1BF1D5C8002F848B /* Products */,
+				379E97871C1E6D4B00082599 /* Fission 3.0 copy-Info.plist */,
+			);
+			sourceTree = "<group>";
+		};
+		375DD5DA1BF1D5C8002F848B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				375DD5D91BF1D5C8002F848B /* Fission 3.0.app */,
+				379E97861C1E6D4B00082599 /* Fission Lite.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		375DD5DB1BF1D5C8002F848B /* Fission 3.0 */ = {
+			isa = PBXGroup;
+			children = (
+				379E97901C1E835200082599 /* TargetViewController.h */,
+				37741C561C1653E000EAF336 /* IntroViewController.h */,
+				379E97941C1E83B500082599 /* Free */,
+				379E97931C1E839B00082599 /* Paid */,
+				370803771BF4215D00FF9A6F /* Shaders */,
+				375DD5E01BF1D5C8002F848B /* AppDelegate.h */,
+				375DD5E11BF1D5C8002F848B /* AppDelegate.m */,
+				375DD5E61BF1D5C8002F848B /* Main.storyboard */,
+				375DD5E91BF1D5C8002F848B /* Images.xcassets */,
+				379E978B1C1E732200082599 /* Free Images.xcassets */,
+				379E978D1C1E734300082599 /* Paid Images.xcassets */,
+				375DD5EB1BF1D5C8002F848B /* LaunchScreen.xib */,
+				375DD5DC1BF1D5C8002F848B /* Supporting Files */,
+				375DD6021BF1DBFE002F848B /* MenuViewController.h */,
+				375DD6031BF1DBFE002F848B /* MenuViewController.m */,
+				370803651BF4118A00FF9A6F /* Gl View */,
+				37C0F45B1BF46DDA00B51A48 /* Fission.h */,
+				37C0F45C1BF46DDA00B51A48 /* Fission.m */,
+				375385FF1C02C6F1004CB31F /* Fission_Interface.h */,
+				375386001C02C6F1004CB31F /* Fission_Interface.m */,
+			);
+			path = "Fission 3.0";
+			sourceTree = "<group>";
+		};
+		375DD5DC1BF1D5C8002F848B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				379E97AA1C1E98BF00082599 /* iRate.h */,
+				379E97AB1C1E98BF00082599 /* iRate.m */,
+				37C0F4581BF456CF00B51A48 /* ShaderHelper.h */,
+				37C0F4591BF456CF00B51A48 /* ShaderHelper.m */,
+				375DD6051BF1DEC6002F848B /* GlobalAccess.h */,
+				375DD6061BF1DEC6002F848B /* GlobalAccess.m */,
+				375DD6081BF2BE2B002F848B /* SeeThroughView.h */,
+				375DD6091BF2BE2B002F848B /* SeeThroughView.m */,
+				375DD60B1BF2BEC0002F848B /* RadioStyleSegmentControl_Luke.h */,
+				375DD60C1BF2BEC0002F848B /* RadioStyleSegmentControl_Luke.m */,
+				375DD5DD1BF1D5C8002F848B /* Info.plist */,
+				375DD5DE1BF1D5C8002F848B /* main.m */,
+				375386021C0BF3D4004CB31F /* TrackTouch.h */,
+				375386031C0BF3D4004CB31F /* TrackTouch.m */,
+				37741C5C1C1673F600EAF336 /* InstructionsViewController.h */,
+				379E97A71C1E948500082599 /* InstructionsViewController.m */,
+				37741C591C1672D000EAF336 /* CustomRotatingView.h */,
+				37741C5A1C1672D000EAF336 /* CustomRotatingView.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		379E97931C1E839B00082599 /* Paid */ = {
+			isa = PBXGroup;
+			children = (
+				379E97911C1E835200082599 /* TargetViewController.m */,
+				37741C571C1653E000EAF336 /* IntroViewController.m */,
+			);
+			name = Paid;
+			sourceTree = "<group>";
+		};
+		379E97941C1E83B500082599 /* Free */ = {
+			isa = PBXGroup;
+			children = (
+				379E97991C1E83F000082599 /* TargetViewController.m */,
+				379E97A41C1E929600082599 /* IntroViewController.m */,
+			);
+			name = Free;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		375DD5D81BF1D5C8002F848B /* Fission 3.0 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 375DD5FC1BF1D5C8002F848B /* Build configuration list for PBXNativeTarget "Fission 3.0" */;
+			buildPhases = (
+				375DD5D51BF1D5C8002F848B /* Sources */,
+				375DD5D61BF1D5C8002F848B /* Frameworks */,
+				375DD5D71BF1D5C8002F848B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Fission 3.0";
+			productName = "Fission 3.0";
+			productReference = 375DD5D91BF1D5C8002F848B /* Fission 3.0.app */;
+			productType = "com.apple.product-type.application";
+		};
+		379E97561C1E6D4B00082599 /* Fission Lite */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 379E97831C1E6D4B00082599 /* Build configuration list for PBXNativeTarget "Fission Lite" */;
+			buildPhases = (
+				379E97571C1E6D4B00082599 /* Sources */,
+				379E976A1C1E6D4B00082599 /* Frameworks */,
+				379E976B1C1E6D4B00082599 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Fission Lite";
+			productName = "Fission 3.0";
+			productReference = 379E97861C1E6D4B00082599 /* Fission Lite.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		375DD5D11BF1D5C8002F848B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = "Luke Hill";
+				TargetAttributes = {
+					375DD5D81BF1D5C8002F848B = {
+						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 6FXD7J8XUQ;
+					};
+				};
+			};
+			buildConfigurationList = 375DD5D41BF1D5C8002F848B /* Build configuration list for PBXProject "Fission 3.0" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 375DD5D01BF1D5C8002F848B;
+			productRefGroup = 375DD5DA1BF1D5C8002F848B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				375DD5D81BF1D5C8002F848B /* Fission 3.0 */,
+				379E97561C1E6D4B00082599 /* Fission Lite */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		375DD5D71BF1D5C8002F848B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37C0F4611BF8227800B51A48 /* shader_collision.fsh in Resources */,
+				379E97891C1E6EDF00082599 /* Images.xcassets in Resources */,
+				375A1DDB1C16AC4200DE6DD8 /* shader_intro.vsh in Resources */,
+				379E979C1C1E8DCD00082599 /* Main.storyboard in Resources */,
+				379D09B41C0E840E00AF7C83 /* shader_sprite_basic.fsh in Resources */,
+				375385FE1BFDA11B004CB31F /* shader_sprite.fsh in Resources */,
+				37741C551C15226A00EAF336 /* shader_line_image.fsh in Resources */,
+				3708037D1BF4236100FF9A6F /* shader_particle.vsh in Resources */,
+				379D09B81C10011500AF7C83 /* shader_line.fsh in Resources */,
+				3708037F1BF4236E00FF9A6F /* shader_particle.fsh in Resources */,
+				379D09B21C0E83F700AF7C83 /* shader_sprite_basic.vsh in Resources */,
+				370803831BF423AF00FF9A6F /* shader_blur.fsh in Resources */,
+				37C0F45F1BF8226B00B51A48 /* shader_collision.vsh in Resources */,
+				370803791BF4219E00FF9A6F /* shader_texture.vsh in Resources */,
+				370803811BF423A300FF9A6F /* shader_blur.vsh in Resources */,
+				375385FC1BFDA10E004CB31F /* shader_sprite.vsh in Resources */,
+				37C0F4631BF97CC200B51A48 /* shader_point.vsh in Resources */,
+				379E978E1C1E734300082599 /* Paid Images.xcassets in Resources */,
+				37C0F4651BF97CD000B51A48 /* shader_point.fsh in Resources */,
+				375DD5ED1BF1D5C8002F848B /* LaunchScreen.xib in Resources */,
+				37741C531C15225E00EAF336 /* shader_line_image.vsh in Resources */,
+				3708037B1BF421B100FF9A6F /* shader_texture.fsh in Resources */,
+				375A1DDD1C16AC5100DE6DD8 /* shader_intro.fsh in Resources */,
+				379D09B61C10010500AF7C83 /* shader_line.vsh in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		379E976B1C1E6D4B00082599 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				379E978F1C1E735200082599 /* Free Images.xcassets in Resources */,
+				379E976C1C1E6D4B00082599 /* shader_collision.fsh in Resources */,
+				379E978A1C1E6EF800082599 /* Images.xcassets in Resources */,
+				379E976D1C1E6D4B00082599 /* shader_intro.vsh in Resources */,
+				379E976E1C1E6D4B00082599 /* shader_sprite_basic.fsh in Resources */,
+				379E976F1C1E6D4B00082599 /* shader_sprite.fsh in Resources */,
+				379E97701C1E6D4B00082599 /* shader_line_image.fsh in Resources */,
+				379E97711C1E6D4B00082599 /* shader_particle.vsh in Resources */,
+				379E97721C1E6D4B00082599 /* shader_line.fsh in Resources */,
+				379E97731C1E6D4B00082599 /* shader_particle.fsh in Resources */,
+				379E97741C1E6D4B00082599 /* shader_sprite_basic.vsh in Resources */,
+				379E97751C1E6D4B00082599 /* shader_blur.fsh in Resources */,
+				379E97761C1E6D4B00082599 /* shader_collision.vsh in Resources */,
+				379E97771C1E6D4B00082599 /* shader_texture.vsh in Resources */,
+				379E97781C1E6D4B00082599 /* shader_blur.vsh in Resources */,
+				379E97791C1E6D4B00082599 /* shader_sprite.vsh in Resources */,
+				379E977A1C1E6D4B00082599 /* shader_point.vsh in Resources */,
+				379E977B1C1E6D4B00082599 /* Main.storyboard in Resources */,
+				379E977C1C1E6D4B00082599 /* shader_point.fsh in Resources */,
+				379E977D1C1E6D4B00082599 /* LaunchScreen.xib in Resources */,
+				379E977E1C1E6D4B00082599 /* shader_line_image.vsh in Resources */,
+				379E977F1C1E6D4B00082599 /* shader_texture.fsh in Resources */,
+				379E97801C1E6D4B00082599 /* shader_intro.fsh in Resources */,
+				379E97811C1E6D4B00082599 /* shader_line.vsh in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		375DD5D51BF1D5C8002F848B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37C0F45D1BF46DDA00B51A48 /* Fission.m in Sources */,
+				379E97A81C1E948500082599 /* InstructionsViewController.m in Sources */,
+				375386011C02C6F1004CB31F /* Fission_Interface.m in Sources */,
+				37C0F4561BF456C000B51A48 /* GL_Touches.m in Sources */,
+				370803871BF4474C00FF9A6F /* AppDelegate.m in Sources */,
+				370803881BF4474C00FF9A6F /* GlobalAccess.m in Sources */,
+				37C0F4471BF4564B00B51A48 /* GL_ViewController.m in Sources */,
+				370803891BF4474C00FF9A6F /* SeeThroughView.m in Sources */,
+				3708038A1BF4474C00FF9A6F /* RadioStyleSegmentControl_Luke.m in Sources */,
+				37C0F4541BF456C000B51A48 /* GL_OpenGL.m in Sources */,
+				3708038B1BF4474C00FF9A6F /* main.m in Sources */,
+				379E97AC1C1E98BF00082599 /* iRate.m in Sources */,
+				375386041C0BF3D4004CB31F /* TrackTouch.m in Sources */,
+				37741C581C1653E000EAF336 /* IntroViewController.m in Sources */,
+				37C0F45A1BF456D000B51A48 /* ShaderHelper.m in Sources */,
+				37C0F4551BF456C000B51A48 /* GL_Texture.m in Sources */,
+				37C0F4571BF456C000B51A48 /* GL_UpdateDraw.m in Sources */,
+				3708038D1BF4474C00FF9A6F /* MenuViewController.m in Sources */,
+				37741C5B1C1672D000EAF336 /* CustomRotatingView.m in Sources */,
+				379E97921C1E835200082599 /* TargetViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		379E97571C1E6D4B00082599 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				379E97581C1E6D4B00082599 /* Fission.m in Sources */,
+				379E97A91C1E948F00082599 /* InstructionsViewController.m in Sources */,
+				379E97591C1E6D4B00082599 /* Fission_Interface.m in Sources */,
+				379E975A1C1E6D4B00082599 /* GL_Touches.m in Sources */,
+				379E975B1C1E6D4B00082599 /* AppDelegate.m in Sources */,
+				379E975C1C1E6D4B00082599 /* GlobalAccess.m in Sources */,
+				379E975D1C1E6D4B00082599 /* GL_ViewController.m in Sources */,
+				379E975E1C1E6D4B00082599 /* SeeThroughView.m in Sources */,
+				379E975F1C1E6D4B00082599 /* RadioStyleSegmentControl_Luke.m in Sources */,
+				379E97601C1E6D4B00082599 /* GL_OpenGL.m in Sources */,
+				379E97611C1E6D4B00082599 /* main.m in Sources */,
+				379E97AD1C1E98BF00082599 /* iRate.m in Sources */,
+				379E97621C1E6D4B00082599 /* TrackTouch.m in Sources */,
+				379E97641C1E6D4B00082599 /* ShaderHelper.m in Sources */,
+				379E97651C1E6D4B00082599 /* GL_Texture.m in Sources */,
+				379E97661C1E6D4B00082599 /* GL_UpdateDraw.m in Sources */,
+				379E97671C1E6D4B00082599 /* MenuViewController.m in Sources */,
+				379E97681C1E6D4B00082599 /* CustomRotatingView.m in Sources */,
+				379E97A61C1E940400082599 /* IntroViewController.m in Sources */,
+				379E979B1C1E842C00082599 /* TargetViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		375DD5E61BF1D5C8002F848B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				375DD5E71BF1D5C8002F848B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		375DD5EB1BF1D5C8002F848B /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				375DD5EC1BF1D5C8002F848B /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		375DD5FA1BF1D5C8002F848B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		375DD5FB1BF1D5C8002F848B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		375DD5FD1BF1D5C8002F848B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "Fission 3.0/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.luke.fission;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Debug;
+		};
+		375DD5FE1BF1D5C8002F848B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "Fission 3.0/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.luke.fission;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Release;
+		};
+		379E97841C1E6D4B00082599 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Free";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "Fission 3.0 copy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.luke.fission-lite";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Debug;
+		};
+		379E97851C1E6D4B00082599 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Free";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "Fission 3.0 copy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.luke.fission-lite";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		375DD5D41BF1D5C8002F848B /* Build configuration list for PBXProject "Fission 3.0" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				375DD5FA1BF1D5C8002F848B /* Debug */,
+				375DD5FB1BF1D5C8002F848B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		375DD5FC1BF1D5C8002F848B /* Build configuration list for PBXNativeTarget "Fission 3.0" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				375DD5FD1BF1D5C8002F848B /* Debug */,
+				375DD5FE1BF1D5C8002F848B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		379E97831C1E6D4B00082599 /* Build configuration list for PBXNativeTarget "Fission Lite" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				379E97841C1E6D4B00082599 /* Debug */,
+				379E97851C1E6D4B00082599 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 375DD5D11BF1D5C8002F848B /* Project object */;
+}
