@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "GlobalAccess.h"
-
 @interface AppDelegate ()
 
 @end
@@ -17,44 +16,43 @@
 @synthesize global;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [self addNonRotatingGLView];
-    // Override point for customization after application launch.
-    // We want to prevent rotating our gl view but only rotate menu view
-    UIDevice *device = [UIDevice currentDevice];					//Get the device object
-    [device beginGeneratingDeviceOrientationNotifications];
-    
-    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    
-    [nc addObserver:self											//Add yourself as an observer
-           selector:@selector(orientationChanged:)
-               name:UIDeviceOrientationDidChangeNotification
-             object:device];
-    
+    [self addGlWindow];
     // Override point for customization after application launch.
     
+    [self.window setBackgroundColor:[UIColor clearColor]];
+    self.window.opaque = NO;
     [self.window makeKeyAndVisible];
+    [self addAndRemoveSplash];
     dispatch_async(dispatch_get_main_queue(), ^(void){
         [self.window.rootViewController performSegueWithIdentifier:@"PushIntro" sender:self];
     });
-    self.window.backgroundColor = [UIColor clearColor];
+    
     return YES;
 }
--(void)orientationChanged:(NSNotification*)notification{
-    //[global.menuView orientationChanged:YES];
-    //[global.introView orientationChanged:YES];
-    //[global.instructionsView orientationChanged:YES];
+-(void)addAndRemoveSplash{
+    UIImageView *splashScreen = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LaunchScreen"]];
+    [self.window addSubview:splashScreen];
+    [self.window makeKeyAndVisible];
+    
+    [UIView animateWithDuration:1.0 animations:^{splashScreen.alpha = 0.0;}
+                     completion:(void (^)(BOOL)) ^{
+                         [splashScreen removeFromSuperview];
+                     }
+     ];
 }
 -(id)init{
     //[self.window makeKeyAndVisible];
     self.global = [[GlobalAccess alloc] init];
     return [super init];
 }
--(void)addNonRotatingGLView{
+-(void)addGlWindow{
     global.glView = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"GlView"];
-    //NSLog(@"Adding gl View");
-    [self.window addSubview:global.glView.view];
+    UIWindow *window2 = [[UIWindow alloc] initWithFrame:global.glView.view.frame];
+    window2.rootViewController = global.glView;
+    window2.userInteractionEnabled = YES;
+    window2.hidden = NO;
+    self.windowGL = window2;
 }
-
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.

@@ -26,6 +26,10 @@
     if (touchDictionary==NULL) {
         touchDictionary = CFDictionaryCreateMutable(NULL, 0,&kCFTypeDictionaryKeyCallBacks,&kCFTypeDictionaryValueCallBacks);
     }
+    UITouch *t = [[touches allObjects] objectAtIndex:0];
+    if (t.tapCount == 2) {
+        [fission toggleMode];
+    }else{
     for (UITouch *touch in touches) {
         TrackTouch *trackTouch = (TrackTouch *)CFDictionaryGetValue(touchDictionary,(__bridge void *)(touch));
         if (trackTouch==NULL) {
@@ -35,6 +39,7 @@
             trackTouch->p1 = [self flipPoint:[touch locationInView:self.view]];
             CFDictionarySetValue(touchDictionary, (__bridge const void *)(touch),(__bridge const void *)(trackTouch));
         }
+    }
     }
 }
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -58,7 +63,9 @@
             if ([trackTouch->touchTimer isValid]) {
                 [trackTouch->touchTimer invalidate];
             }
-            [fission createTouchGhost:trackTouch->p1 withVelocity:CGPointMake(trackTouch->p1.x-trackTouch->p0.x, trackTouch->p1.y-trackTouch->p0.y)];
+            if (!fission->currentMode==MODE_PASSIVE) {
+                [fission createTouchGhost:trackTouch->p1 withVelocity:CGPointMake(trackTouch->p1.x-trackTouch->p0.x, trackTouch->p1.y-trackTouch->p0.y)];
+            }
             CFDictionaryRemoveValue(touchDictionary, (__bridge void *)(touch));
         }
     }

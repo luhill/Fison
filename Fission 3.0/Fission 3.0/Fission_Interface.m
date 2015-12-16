@@ -25,6 +25,19 @@
         currentActiveMode = mode;
     }
 }
+-(void)toggleMode{
+    GlobalAccess *data;
+    AppDelegate * delegate = [[UIApplication sharedApplication] delegate];
+    data = delegate->global;
+    
+    if (currentMode==MODE_PASSIVE) {
+        currentMode=currentActiveMode;
+    }else{
+        currentMode=MODE_PASSIVE;
+    }
+    UIButton *button = (UIButton*)[data.menuView.view0 viewWithTag:currentMode];
+    [button sendActionsForControlEvents:UIControlEventTouchDown];
+}
 -(void)touchedAt:(CGPoint)p{
     [self newMoleculeAtX:p.x andY:p.y andMode:currentMode];
 }
@@ -51,7 +64,7 @@
     glLineWidth(s);
 }
 -(void)radiusChanged:(float)val{
-    radius = val*512.0;
+    radius = val*viewPtr->screen_info.view_height/2.0;
 }
 -(void)speedChanged:(float)val{
     speed = val/10.0*60000.0;

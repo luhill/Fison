@@ -34,16 +34,17 @@ AppDelegate *appDelegate;
     appDelegate = [[UIApplication sharedApplication] delegate];
     data = appDelegate.global;
     data->menuView = self;
-    colorArray =[[NSArray alloc] initWithObjects:@"custom",@"skyline",@"incandescent",@"rainbow1",@"deepsea",@"rainbow2",@"tropical",@"firework",@"golden",@"abstract", nil];
+    colorArray =[[NSArray alloc] initWithObjects:@"custom",@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",@"11",@"12",@"13",@"14", nil];
     [data->glView->fission restoreDefaultSettings];
     [data->glView->fission setParticleCount];
-    //[data->glView->fission buildIntroGrid];
     [colorPicker selectRow:1 inComponent:0 animated:NO];
     loadPhoto.hidden = YES;
     [self hideToolBarWithAnimation:NO];
     backgroundImage = [UIImage imageNamed:@"background"];
-    [data->glView setBackGroundImage:[self scaleImageToSize:[self rotateImage:backgroundImage orientation:[[UIApplication sharedApplication] statusBarOrientation]]]];
-    //[self showAndHideMenus];
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self initilizeBackgroundPhoto];
 }
 //////////////////////////////////////////////////////////////////////////////////////
 //-------------------------Application Specific Methods-----------------------------//
@@ -56,6 +57,10 @@ AppDelegate *appDelegate;
     [data->glView setBackGroundImage:[self scaleImageToSize:[self rotateImage:backgroundImage orientation:toInterfaceOrientation]]];
 }
 #pragma mark - Color Picker
+-(void)initilizeBackgroundPhoto{
+    //called when glview loads
+    [data->glView setBackGroundImage:[self scaleImageToSize:[self rotateImage:backgroundImage orientation:self.interfaceOrientation]]];
+}
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
     return 1;
 }
@@ -133,6 +138,9 @@ AppDelegate *appDelegate;
 }
 - (UIImage *)scaleImageToSize:(UIImage*)original{
     CGRect viewRect = self.view.frame;
+    //Frame is no longer constant in ios9 and changes when screen rotates
+    viewRect.size.width = MIN(self.view.frame.size.width, self.view.frame.size.height);
+    viewRect.size.height = MAX(self.view.frame.size.width, self.view.frame.size.height);
     CGRect scaledImageRect = CGRectZero;
     
     CGFloat aspectWidth = viewRect.size.width / original.size.width;
@@ -155,8 +163,7 @@ AppDelegate *appDelegate;
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
     backgroundImage = image;
-    
-    [data->glView setBackGroundImage:[self scaleImageToSize:[self rotateImage:backgroundImage orientation:[[UIApplication sharedApplication] statusBarOrientation]]]];
+    [data->glView setBackGroundImage:[self scaleImageToSize:[self rotateImage:backgroundImage orientation:self.interfaceOrientation]]];
 
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         [imagePopOver dismissPopoverAnimated:YES];
@@ -192,6 +199,9 @@ AppDelegate *appDelegate;
     [self performSegueWithIdentifier:@"PushIntro" sender:sender];
     [self hideToolBarWithAnimation:YES];
     data->glView->fission->USING_INTRO = YES;
+    data->glView->fission->introTimer = 0.0;
+    data->glView->fission->introCountDown = 1.0;
+    data->glView->fission->COLLAPSING_INTRO = NO;
 }
 -(IBAction)restoreDefaultSettingsPressed:(id)sender{
     [data->glView->fission restoreDefaultSettings];

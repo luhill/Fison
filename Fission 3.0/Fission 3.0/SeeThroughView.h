@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface SeeThroughView : UIView
-
+#import "GL_ViewController.h"
+@interface SeeThroughView : UIView{
+    GL_ViewController *glView;
+}
 @end

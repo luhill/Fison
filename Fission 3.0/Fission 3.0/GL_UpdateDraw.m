@@ -70,9 +70,12 @@
     glColorMask(1.0, 1.0, 0.0, 0.0);
     [self setBufferDrawMode:FRAMEBUFFER_OFFSCREEN_RENDER_2];
     glBlendFunc(GL_ONE, GL_ONE);
-    [self drawCollisions_passive];
-    [self drawCollisions_active];
     glDisable(GL_BLEND);
+    glColorMask(0.0, 1.0, 0.0, 0.0);
+    [self drawCollisions_passive];
+    glColorMask(1.0, 0.0, 0.0, 0.0);
+    [self drawCollisions_active];
+    
     glColorMask(1.0, 0.0, 0.0, 0.0);
     [self setBufferDrawMode:FRAMEBUFFER_OFFSCREEN_RENDER_0];
     [self drawMap];

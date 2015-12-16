@@ -47,4 +47,5 @@
 -(IBAction)showToolBar:(id)sender;
 -(void)showToolBarWithAnimation:(bool)animate;
 -(void)hideToolBarWithAnimation:(bool)animate;
+-(void)initilizeBackgroundPhoto;
 @end

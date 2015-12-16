@@ -14,11 +14,12 @@ typedef struct _Particle{
     struct _Point2D *vPtr0, *vPtr1;
     GLfloat xc,yc;
     GLshort mode;
-    unsigned short randAngle, randDistance, randTime;
-    bool isFirstPassiveInGroup;//Only the first passive particle in a group will be displayed as others in the group will overlap it
+    GLushort randAngle, randDistance, randTime;
     GLushort t;
     GLushort fragIndex;
     GLushort binomialLayer;
+    int leadIndex;
+    bool isFirstPassiveInGroup;//Only the first passive particle in a group will be displayed as others in the group will overlap it
 }Particle;
 typedef struct _touchGhost{
     CGPoint currentPoint;

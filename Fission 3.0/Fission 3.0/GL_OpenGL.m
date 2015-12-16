@@ -75,8 +75,6 @@
     
     [self buildScreenQuad];
     [self buildRenderQuad];
-    
-    
     fission = [[Fission alloc] initWithPoints:vertices_info.fissionPoints andPointer:self];
 }
 -(void)allocateVertices{
@@ -97,6 +95,8 @@
             glBindFramebuffer(GL_FRAMEBUFFER, index_framebuffers[FRAMEBUFFER_OFFSCREEN_RENDER_0]);
             glViewport(0, 0, screen_info.render_texture0_width, screen_info.render_texture0_height);
             //Each pixel in this framebuffer represents a particle in fission. Relevant particles are rendered each frame with no blending so a glClear is not required.
+            glClearColor(0.0, 0.0, 0.0, 0.0);
+            glClear(GL_COLOR_BUFFER_BIT);
             break;}
         case FRAMEBUFFER_OFFSCREEN_RENDER_1:{//offscreen render target for display
             glBindFramebuffer(GL_FRAMEBUFFER, index_framebuffers[FRAMEBUFFER_OFFSCREEN_RENDER_1]);

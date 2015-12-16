@@ -41,7 +41,7 @@
     //AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     //data = appDelegate.global;
     //menuView = appDelegate->menu;
-    
+    NSLog(@"Launched GL");
     [self launchOpenGL];
 }
 

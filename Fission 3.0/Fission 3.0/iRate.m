@@ -219,7 +219,7 @@ static NSString *const iRateMacAppStoreURLFormat = @"macappstore://itunes.apple.
         self.usesPerWeekForPrompt = 0.0f;
         self.remindPeriod = 1.0f;
         self.verboseLogging = NO;
-        self.previewMode = YES;
+        self.previewMode = NO;
 
 #if DEBUG
 

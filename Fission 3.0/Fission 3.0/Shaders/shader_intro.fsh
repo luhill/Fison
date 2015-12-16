@@ -11,5 +11,5 @@ void main(){
     lowp float comp4 = sin((blur+length(texCoords-vec2(sin(blur),sin(blur))))/scale);
     lowp float green = (comp1+comp2+comp3+comp4)*0.125+0.5;
     lowp vec3 color = vec3(1.0,green,0.0)*(1.0-centerDist*centerDist*centerDist);
-    gl_FragColor = vec4(color,1.0);
+    gl_FragColor = vec4(color*min(blur*2.0,1.0),1.0);
 }

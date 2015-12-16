@@ -15,7 +15,7 @@
 @end
 
 @implementation IntroViewController
-@synthesize button_upgrade;
+@synthesize button_upgrade, splash;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -24,8 +24,16 @@
     data->introView = self;
     viewDescription =@"Intro";
     button_upgrade.hidden = NO;
+    splash.alpha = 0.0;
     //[data->menuView performSegueWithIdentifier:@"PushIntro" sender:data->menuView];
     // Do any additional setup after loading the view.
+}
+-(void)viewDidAppear:(BOOL)animated{
+    
+    [UIView animateWithDuration:2.0 animations:^{
+        splash.alpha = 1.0;
+        [self.view layoutIfNeeded];
+    }];
 }
 -(IBAction)upgradePressed:(id)sender{
     NSLog(@"Upgrade");

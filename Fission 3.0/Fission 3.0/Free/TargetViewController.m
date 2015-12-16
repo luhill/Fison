@@ -19,6 +19,13 @@
 @synthesize loadPhoto;
 -(void)viewDidLoad{
     [super viewDidLoad];
+    _adBanner = [[ADBannerView alloc] initWithFrame:CGRectZero];
+    _adBanner.delegate = self;
+    [_adBanner setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+    _adBanner.hidden = YES;
+    _adBanner.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:_adBanner];
+    NSLog(@"Added banner");
     //loadPhoto.hidden=yes;
 }
 -(IBAction)modeButtonPressed:(id)sender{
@@ -37,12 +44,8 @@
     loadPhoto.hidden = YES;
 }
 #pragma mark - ads
-- (void)viewDidAppear:(BOOL)animated
-{
+- (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    
-    //_adBanner = [[ADBannerView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 50)];
-    //_adBanner.delegate = self;
 }
 /*!
  * @method bannerViewWillLoadAd:
@@ -51,27 +54,38 @@
  * Called when a banner has confirmation that an ad will be presented, but
  * before the resources necessary for presentation have loaded.
  */
-- (void)bannerViewWillLoadAd:(ADBannerView *)banner{
+- (void)layoutAnimated:(BOOL)animated{
+    CGRect contentFrame = self.view.bounds;
+    CGRect bannerFrame = _adBanner.frame;
+    bool hideBanner;
+    //bannerFrame.size.width=contentFrame.size.width;
     
-}
-- (void)bannerViewDidLoadAd:(ADBannerView *)banner{
+    if (_adBanner.bannerLoaded){
+        hideBanner = NO;
+        _adBanner.hidden = hideBanner;
+        contentFrame.size.height -= _adBanner.frame.size.height;
+        bannerFrame.origin.y = 0;
+    } else {
+        hideBanner = YES;
+        bannerFrame.origin.y = 0.0-bannerFrame.size.height;
+    }
     
-}
+    [UIView animateWithDuration:animated ? 0.25 : 0.0 animations:^{
+        //self.view.frame = contentFrame;
+        [self.view layoutIfNeeded];
+        _adBanner.frame = bannerFrame;
+    }completion:^(BOOL finished){
+        _adBanner.hidden=hideBanner;
+    }]; }
 
-/*!
- * @method bannerView:didFailToReceiveAdWithError:
- *
- * @discussion
- * Called when an error has occurred while attempting to get ad content. If the
- * banner is being displayed when an error occurs, it should be hidden
- * to prevent display of a banner view with no ad content.
- *
- * @see ADError for a list of possible error codes.
- */
+-(void)bannerViewDidLoadAd:(ADBannerView *)banner{
+    NSLog(@"Recieve ad");
+    [self layoutAnimated:YES];
+}
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error{
-    
+    NSLog(@"Failed to recieve ad");
+    [self layoutAnimated:YES];
 }
-
 /*!
  * @method bannerViewActionShouldBegin:willLeaveApplication:
  *
@@ -88,7 +102,7 @@
  * executes.
  */
 - (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave{
-    return NO;
+    return YES;
 }
 
 /*!

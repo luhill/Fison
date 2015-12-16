@@ -7,18 +7,24 @@
 //
 
 #import "SeeThroughView.h"
-
+#import "AppDelegate.h"
+#import "GlobalAccess.h"
 @implementation SeeThroughView
--(BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event{
-    
-    for (UIView *view in [self subviews]){
-        //Here you can compare each view frame with touch location
-        if(CGRectContainsPoint(view.frame, point) && !view.hidden){
-            //NSLog(@"Touch is in see through view");
-            return YES;
-        }
-    }
-    return NO;
-}
 
+-(UIView*)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
+    UIView* targetView = [super hitTest:point withEvent:event];
+    if ([targetView isKindOfClass:[SeeThroughView class]]) {
+        if (glView==nil) {
+            [self getGlHandle];
+        }
+        return glView.view;
+    }else{
+        return targetView;
+    }
+}
+-(void)getGlHandle{
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    GlobalAccess *data = appDelegate.global;
+    glView = data->glView;
+}
 @end

@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "GlobalAccess.h"
-
 @interface AppDelegate : UIResponder <UIApplicationDelegate>{
 @public
     GlobalAccess *global;
 }
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) UIWindow *windowGL;
 @property (nonatomic, retain) GlobalAccess *global;
 
 @end

@@ -24,6 +24,7 @@
 -(void)touchedAt:(CGPoint)p;
 -(int)particleCountChanged:(float)val extraParticles:(float)val2;
 -(void)setMode:(int)mode;
+-(void)toggleMode;
 -(void)renderModeSwitched:(BOOL)val;
 -(void)showToolBar;
 

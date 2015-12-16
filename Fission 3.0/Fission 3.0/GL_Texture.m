@@ -36,7 +36,7 @@
     //glActiveTexture(GL_TEXTURE4);
     glBindTexture(GL_TEXTURE_2D, index_textures[TEXTURE_COLOR]);
     [self setTextureParametersLinear];
-    [self attachImageToBoundedTexture:nil orName:@"skyline"];
+    [self attachImageToBoundedTexture:nil orName:@"1"];
     
     //glActiveTexture(GL_TEXTURE5);
     glBindTexture(GL_TEXTURE_2D, index_textures[TEXTURE_SPRITE_PASSIVE]);

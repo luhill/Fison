@@ -12,6 +12,7 @@
 
 }
 @property(nonatomic, retain) IBOutlet UIButton *button_upgrade;
+@property(nonatomic, retain) IBOutlet UIImageView *splash;
 -(IBAction)unwindToIntroView:(UIStoryboardSegue*)unwindSegue;
 -(IBAction)upgradePressed:(id)sender;
 @end
