@@ -19,19 +19,30 @@
 }
 //When a window rotates it adds a view with a black frame to mask the edges with black bars. This method hides views that dont belong to the project
 -(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration {
+    
     UIWindow* window = self.view.window;
     for (UIView* view in [window subviews]) {
-        [self recursiveViewSearch:view];
+        //bool b = [self recursiveViewSearch:view];
+        bool b = [self viewContainsSeeThroughView:view];
+        if (b) {
+            //precent warning by using b
+        }
     }
+    [super willAnimateRotationToInterfaceOrientation:interfaceOrientation duration:duration];
 }
--(void)recursiveViewSearch:(UIView*)v{
+
+-(BOOL)viewContainsSeeThroughView:(UIView*)v{
     if ([v isKindOfClass:[SeeThroughView class]]) {
-        return;
+        return YES;
     }else{
         for (UIView* subview in [v subviews]) {
-            [self recursiveViewSearch:subview];
+            if ([self viewContainsSeeThroughView:subview]) {
+                return YES;
+            }
         }
-        v.hidden = YES;
+        //View contains no subviews of class SeeThroughView so hide it
+        v.hidden=YES;
+        return NO;
     }
 }
 /*

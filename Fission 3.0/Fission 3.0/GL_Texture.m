@@ -35,7 +35,7 @@
     
     //glActiveTexture(GL_TEXTURE4);
     glBindTexture(GL_TEXTURE_2D, index_textures[TEXTURE_COLOR]);
-    [self setTextureParametersLinear];
+    [self setTextureParameters];
     [self attachImageToBoundedTexture:nil orName:@"1"];
     
     //glActiveTexture(GL_TEXTURE5);
@@ -44,8 +44,8 @@
     [self attachImageToBoundedTexture:nil orName:@"spritePassive"];
     
     glBindTexture(GL_TEXTURE_2D, index_textures[TEXTURE_SPRITE_ACTIVE]);
-    [self setTextureParametersLinear];
     [self attachImageToBoundedTexture:nil orName:@"spriteActive"];
+    [self setTextureParameters];
 
     glActiveTexture(GL_TEXTURE0);
     glGenTextures(NUM_RENDER_TEXTURES, index_textures_render);
@@ -55,12 +55,14 @@
         [self setTextureParameters];
         [self buildTextureForScreenDimensions:screen_info.render_texture0_width andHeight:screen_info.render_texture0_height highPrecision:NO];
     }
+    /*
     if (USE_OFFSCREEN_TEXTURE1_CACHE==NO) {
         //glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, index_textures_render[TEXTURE_OFFSCREEN_TARGET_1]);
         [self setTextureParameters];
         [self buildTextureForScreenDimensions:screen_info.render_texture1_width andHeight:screen_info.render_texture1_height highPrecision:NO];
-    }
+    }*/
+     
     if (USE_OFFSCREEN_TEXTURE2_CACHE==NO) {
         //glActiveTexture(GL_TEXTURE2);
         glBindTexture(GL_TEXTURE_2D, index_textures_render[TEXTURE_OFFSCREEN_TARGET_2]);
@@ -68,6 +70,13 @@
         [self buildTextureForScreenDimensions:screen_info.render_texture2_width andHeight:screen_info.render_texture2_height highPrecision:YES];
     }
     glFinish();
+}
+-(void)setTextureParametersMipMap{
+    glGenerateMipmap(GL_TEXTURE_2D);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST_MIPMAP_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST_MIPMAP_LINEAR);
 }
 -(void)setTextureParametersLinear{
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
@@ -109,7 +118,6 @@
     CGContextRelease(cont);
     
     free(imageData);
-    
 }
 -(void)buildTextureForScreenDimensions:(GLfloat)w andHeight:(GLfloat)h highPrecision:(bool)highP{
     //Texture dimensions must be a power of two and must be at least as large as the screen.

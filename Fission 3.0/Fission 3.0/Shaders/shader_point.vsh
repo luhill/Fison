@@ -1,5 +1,5 @@
 attribute vec2 position;
-
+attribute vec2 shortTextureCoords;
 
 uniform mediump float ptSize;
 uniform vec2 projection2d_a;

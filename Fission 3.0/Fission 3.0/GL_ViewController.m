@@ -10,7 +10,6 @@
 
 #import "GL_ViewController.h"
 #import "GL_OpenGL.h"
-
 //#import "AppDelegate.h"
 //#import "GlobalAccess.h"
 //////////////////////////////////
@@ -25,7 +24,6 @@
     [super viewDidLoad];
     
     self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
-    
     if (!self.context) {
         NSLog(@"Failed to create ES context");
     }
@@ -35,13 +33,19 @@
     view.context = self.context;
     view.drawableDepthFormat = GLKViewDrawableDepthFormatNone;
     //view.drawableDepthFormat = GLKViewDrawableDepthFormat16;
+    //view.drawableColorFormat = GLKViewDrawableColorFormatRGB565;
+#if (TARGET_IPHONE_SIMULATOR)
+    view.drawableColorFormat = GLKViewDrawableColorFormatRGBA8888;
+#else
     view.drawableColorFormat = GLKViewDrawableColorFormatRGB565;
+#endif
     [EAGLContext setCurrentContext:self.context];//-----!!!!This must be performed early on or you will end up smashing your head into the computer!!!!!//
     
     //AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     //data = appDelegate.global;
     //menuView = appDelegate->menu;
     NSLog(@"Launched GL");
+    
     [self launchOpenGL];
 }
 

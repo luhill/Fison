@@ -48,10 +48,10 @@
                                     <action selector="showToolBar:" destination="ZdS-G9-5DI" eventType="touchUpInside" id="WBN-hh-F0W"/>
                                 </connections>
                             </button>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gPc-BX-u4j" userLabel="View1">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gPc-BX-u4j" userLabel="View1" customClass="SeeThroughView">
                                 <rect key="frame" x="0.0" y="436" width="800" height="100"/>
                                 <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="MGF-VB-vpy">
+                                    <segmentedControl hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="MGF-VB-vpy">
                                         <rect key="frame" x="324" y="36" width="185" height="29"/>
                                         <segments>
                                             <segment title="Regular"/>
@@ -173,45 +173,7 @@
                                     <outletCollection property="gestureRecognizers" destination="RFu-52-qBv" appends="YES" id="XYf-VI-hvL"/>
                                 </connections>
                             </view>
-                            <toolbar clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FeD-uc-oh6">
-                                <rect key="frame" x="0.0" y="756" width="800" height="44"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <items>
-                                    <barButtonItem style="plain" id="z6R-TY-Zm3" userLabel="View Bar Button">
-                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" id="9jo-TT-gG6" userLabel="View Segment" customClass="RadioStyleSegmentControl_Luke">
-                                            <rect key="frame" x="20" y="7" width="157" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <segments>
-                                                <segment title="" image="modeIcon"/>
-                                                <segment title="" image="rainbow"/>
-                                                <segment title="" image="Settings"/>
-                                                <segment title="" image="speedometer"/>
-                                            </segments>
-                                            <connections>
-                                                <action selector="toolbarSegmentChanged:" destination="ZdS-G9-5DI" eventType="valueChanged" id="bJa-RI-yCX"/>
-                                            </connections>
-                                        </segmentedControl>
-                                    </barButtonItem>
-                                    <barButtonItem image="explode" id="EWP-3z-mGN">
-                                        <connections>
-                                            <action selector="buildFissionGrid:" destination="ZdS-G9-5DI" id="HlZ-mU-PuC"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Jx2-cb-50P"/>
-                                    <barButtonItem image="FissionBar" id="RmJ-Du-TC5">
-                                        <connections>
-                                            <action selector="showIntro:" destination="ZdS-G9-5DI" id="JKF-EE-FEm"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="stop" id="UmD-2j-qHw" userLabel="Button hide toolbar">
-                                        <connections>
-                                            <action selector="hideToolBar:" destination="ZdS-G9-5DI" id="GWM-dv-GhQ"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </toolbar>
-                            <view hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hI3-BY-iCq" userLabel="View2">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hI3-BY-iCq" userLabel="View2" customClass="SeeThroughView">
                                 <rect key="frame" x="0.0" y="263" width="800" height="135"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Motion Trails" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vhu-oW-oHi">
@@ -364,7 +326,7 @@
                                     <outletCollection property="gestureRecognizers" destination="Ejs-Rn-nvG" appends="YES" id="SyP-Do-Kdy"/>
                                 </connections>
                             </view>
-                            <view tag="-1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0kl-D5-xxp" userLabel="View0">
+                            <view tag="-1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0kl-D5-xxp" userLabel="View0" customClass="SeeThroughView">
                                 <rect key="frame" x="0.0" y="652" width="800" height="104"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ir-55-Vw3" userLabel="Mode1">
@@ -521,7 +483,7 @@
                                     <outletCollection property="gestureRecognizers" destination="DcS-ca-6ON" appends="YES" id="mgv-y8-1ys"/>
                                 </connections>
                             </view>
-                            <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S3N-P7-bCJ" userLabel="View3">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S3N-P7-bCJ" userLabel="View3" customClass="SeeThroughView">
                                 <rect key="frame" x="0.0" y="45" width="800" height="157"/>
                                 <subviews>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="9jl-eH-azb">
@@ -537,7 +499,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="TOY-jo-QA2">
-                                        <rect key="frame" x="129" y="61" width="665" height="31"/>
+                                        <rect key="frame" x="129" y="61" width="586" height="31"/>
                                         <connections>
                                             <action selector="particleCount2Changed:" destination="ZdS-G9-5DI" eventType="valueChanged" id="44n-7o-j48"/>
                                         </connections>
@@ -605,6 +567,13 @@
                                         </attributedString>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IdS-A0-6tK">
+                                        <rect key="frame" x="726" y="61" width="60" height="30"/>
+                                        <state key="normal" title="Upgrade"/>
+                                        <connections>
+                                            <action selector="upgradePressed:" destination="ZdS-G9-5DI" eventType="touchDown" id="Arm-yD-foZ"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -612,6 +581,7 @@
                                 <constraints>
                                     <constraint firstItem="tmb-Tq-wtJ" firstAttribute="leading" secondItem="cOz-Ie-JRJ" secondAttribute="trailing" constant="-115" id="0jy-LW-RYv"/>
                                     <constraint firstItem="5Uu-aS-34W" firstAttribute="centerY" secondItem="cOz-Ie-JRJ" secondAttribute="centerY" constant="29" id="21q-V7-4Bu"/>
+                                    <constraint firstItem="IdS-A0-6tK" firstAttribute="centerX" secondItem="NVI-4I-Ag4" secondAttribute="centerX" id="8sv-5k-Mb0"/>
                                     <constraint firstItem="NVI-4I-Ag4" firstAttribute="centerY" secondItem="PP7-Ra-ykJ" secondAttribute="centerY" id="AYJ-lT-EGp"/>
                                     <constraint firstItem="RvB-Fq-Mq3" firstAttribute="top" secondItem="S3N-P7-bCJ" secondAttribute="top" constant="8" id="Cas-00-Umu"/>
                                     <constraint firstItem="zEk-iM-Wb5" firstAttribute="leading" secondItem="tmb-Tq-wtJ" secondAttribute="trailing" constant="8" id="CuT-xA-Qi7"/>
@@ -625,9 +595,10 @@
                                     <constraint firstItem="NVI-4I-Ag4" firstAttribute="leading" secondItem="9jl-eH-azb" secondAttribute="trailing" constant="8" id="ZzX-Cw-AWd"/>
                                     <constraint firstItem="It7-er-PVf" firstAttribute="top" secondItem="PP7-Ra-ykJ" secondAttribute="bottom" constant="8" id="dA6-1b-37W"/>
                                     <constraint firstItem="9jl-eH-azb" firstAttribute="leading" secondItem="PP7-Ra-ykJ" secondAttribute="trailing" constant="8" id="j1n-uJ-YNf"/>
-                                    <constraint firstAttribute="trailing" secondItem="TOY-jo-QA2" secondAttribute="trailing" constant="8" id="kmI-j8-4Ow"/>
                                     <constraint firstItem="5Uu-aS-34W" firstAttribute="leading" secondItem="zEk-iM-Wb5" secondAttribute="trailing" constant="8" id="nAD-jl-evh"/>
                                     <constraint firstItem="cOz-Ie-JRJ" firstAttribute="leading" secondItem="PP7-Ra-ykJ" secondAttribute="leading" id="okF-Od-Igr"/>
+                                    <constraint firstItem="TOY-jo-QA2" firstAttribute="trailing" secondItem="9jl-eH-azb" secondAttribute="trailing" id="pYf-7x-cYC"/>
+                                    <constraint firstItem="IdS-A0-6tK" firstAttribute="top" secondItem="NVI-4I-Ag4" secondAttribute="bottom" constant="-1" id="sDi-sc-XqQ"/>
                                     <constraint firstItem="RvB-Fq-Mq3" firstAttribute="leading" secondItem="S3N-P7-bCJ" secondAttribute="leading" constant="8" id="v8Y-vT-fny"/>
                                     <constraint firstItem="TOY-jo-QA2" firstAttribute="centerY" secondItem="It7-er-PVf" secondAttribute="centerY" id="wDu-dk-4qG"/>
                                     <constraint firstAttribute="trailing" secondItem="NVI-4I-Ag4" secondAttribute="trailing" constant="8" id="xSC-Xd-ykW"/>
@@ -654,6 +625,44 @@
                                     <outletCollection property="gestureRecognizers" destination="KtV-QI-Mnz" appends="YES" id="ZlV-px-PTV"/>
                                 </connections>
                             </view>
+                            <toolbar clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FeD-uc-oh6">
+                                <rect key="frame" x="0.0" y="756" width="800" height="44"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <barButtonItem style="plain" id="z6R-TY-Zm3" userLabel="View Bar Button">
+                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" id="9jo-TT-gG6" userLabel="View Segment" customClass="RadioStyleSegmentControl_Luke">
+                                            <rect key="frame" x="20" y="7" width="157" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <segments>
+                                                <segment title="" image="modeIcon"/>
+                                                <segment title="" image="rainbow"/>
+                                                <segment title="" image="Settings"/>
+                                                <segment title="" image="speedometer"/>
+                                            </segments>
+                                            <connections>
+                                                <action selector="toolbarSegmentChanged:" destination="ZdS-G9-5DI" eventType="valueChanged" id="bJa-RI-yCX"/>
+                                            </connections>
+                                        </segmentedControl>
+                                    </barButtonItem>
+                                    <barButtonItem image="explode" id="EWP-3z-mGN">
+                                        <connections>
+                                            <action selector="buildFissionGrid:" destination="ZdS-G9-5DI" id="HlZ-mU-PuC"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Jx2-cb-50P"/>
+                                    <barButtonItem image="FissionBar" id="RmJ-Du-TC5">
+                                        <connections>
+                                            <action selector="showIntro:" destination="ZdS-G9-5DI" id="JKF-EE-FEm"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="stop" id="UmD-2j-qHw" userLabel="Button hide toolbar">
+                                        <connections>
+                                            <action selector="hideToolBar:" destination="ZdS-G9-5DI" id="GWM-dv-GhQ"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
@@ -710,6 +719,7 @@
                         <outlet property="slider_speed" destination="bAb-0d-SCM" id="ybP-0O-fIQ"/>
                         <outlet property="toolBar" destination="FeD-uc-oh6" id="CsB-wa-vOl"/>
                         <outlet property="toolbarSegment" destination="9jo-TT-gG6" id="c0O-8x-tUG"/>
+                        <outlet property="upgradeButton" destination="IdS-A0-6tK" id="SEL-mg-pSU"/>
                         <outlet property="view0" destination="0kl-D5-xxp" id="79N-hl-KxO"/>
                         <outlet property="view1" destination="gPc-BX-u4j" id="cdK-i0-jiw"/>
                         <outlet property="view2" destination="hI3-BY-iCq" id="6ED-KE-5zv"/>
@@ -779,15 +789,15 @@
                         <viewControllerLayoutGuide type="top" id="rSs-Q5-0QA"/>
                         <viewControllerLayoutGuide type="bottom" id="hH6-jt-ldQ"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="wr2-mT-xtC" customClass="SeeThroughView">
+                    <view key="view" tag="1" contentMode="scaleToFill" id="wr2-mT-xtC" customClass="SeeThroughView">
                         <rect key="frame" x="0.0" y="0.0" width="800" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="42K-Cl-3fJ" customClass="SeeThroughView">
-                                <rect key="frame" x="0.0" y="67" width="800" height="666"/>
+                            <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="42K-Cl-3fJ" customClass="SeeThroughView">
+                                <rect key="frame" x="0.0" y="86" width="800" height="628"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VkI-tk-7HL">
-                                        <rect key="frame" x="341" y="598" width="118" height="30"/>
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VkI-tk-7HL">
+                                        <rect key="frame" x="341" y="560" width="118" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="118" id="owQ-NW-oNg"/>
                                             <constraint firstAttribute="height" constant="30" id="z9f-Bj-fYV"/>
@@ -801,8 +811,8 @@
                                             <segue destination="2fj-5F-svb" kind="show" id="mlI-du-5wR"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sKe-Ix-zY6">
-                                        <rect key="frame" x="378" y="560" width="44" height="30"/>
+                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sKe-Ix-zY6">
+                                        <rect key="frame" x="378" y="522" width="44" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="B1i-FV-Szw"/>
                                         </constraints>
@@ -815,22 +825,19 @@
                                             <segue destination="LDX-JK-gbo" kind="unwind" unwindAction="unwindToMenuView:" id="zdY-Xz-A9o"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Fission Splash" translatesAutoresizingMaskIntoConstraints="NO" id="NOg-lb-iRS">
-                                        <rect key="frame" x="144" y="38" width="512" height="512"/>
+                                    <imageView userInteractionEnabled="NO" tag="5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Fission Splash" translatesAutoresizingMaskIntoConstraints="NO" id="NOg-lb-iRS">
+                                        <rect key="frame" x="144" y="0.0" width="512" height="512"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="512" id="1Vd-kJ-KLj">
+                                                <variation key="heightClass=compact" constant="250"/>
                                                 <variation key="heightClass=compact-widthClass=compact" constant="150"/>
                                                 <variation key="heightClass=regular-widthClass=compact" constant="300"/>
                                             </constraint>
                                             <constraint firstAttribute="width" secondItem="NOg-lb-iRS" secondAttribute="height" multiplier="1:1" id="lEa-Je-CZk"/>
-                                            <constraint firstAttribute="height" constant="512" id="pCt-pg-JRn">
-                                                <variation key="heightClass=compact-widthClass=compact" constant="150"/>
-                                                <variation key="heightClass=regular-widthClass=compact" constant="300"/>
-                                            </constraint>
                                         </constraints>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZqC-zh-Eyv">
-                                        <rect key="frame" x="248" y="636" width="304" height="30"/>
+                                    <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZqC-zh-Eyv">
+                                        <rect key="frame" x="248" y="598" width="304" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="304" id="1zc-lF-8iH"/>
                                             <constraint firstAttribute="height" constant="30" id="vF6-rF-ggL"/>
@@ -851,7 +858,7 @@
                                     <constraint firstItem="VkI-tk-7HL" firstAttribute="top" secondItem="sKe-Ix-zY6" secondAttribute="bottom" constant="8" id="DWe-z0-myb"/>
                                     <constraint firstItem="NOg-lb-iRS" firstAttribute="centerX" secondItem="42K-Cl-3fJ" secondAttribute="centerX" id="EdV-0X-aiq"/>
                                     <constraint firstAttribute="bottom" secondItem="ZqC-zh-Eyv" secondAttribute="bottom" id="F9I-XT-JHq"/>
-                                    <constraint firstItem="NOg-lb-iRS" firstAttribute="top" secondItem="42K-Cl-3fJ" secondAttribute="top" constant="38" id="UVW-Ic-6ld"/>
+                                    <constraint firstItem="NOg-lb-iRS" firstAttribute="top" secondItem="42K-Cl-3fJ" secondAttribute="top" id="UVW-Ic-6ld"/>
                                     <constraint firstItem="sKe-Ix-zY6" firstAttribute="centerX" secondItem="42K-Cl-3fJ" secondAttribute="centerX" id="l0H-IF-Pd4"/>
                                     <constraint firstItem="ZqC-zh-Eyv" firstAttribute="top" secondItem="VkI-tk-7HL" secondAttribute="bottom" constant="8" id="rSm-D4-clN"/>
                                     <constraint firstItem="sKe-Ix-zY6" firstAttribute="top" secondItem="NOg-lb-iRS" secondAttribute="bottom" constant="10" id="uAS-tP-cej"/>
@@ -869,7 +876,7 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="button_upgrade" destination="ZqC-zh-Eyv" id="Li4-3r-WJ7"/>
-                        <outlet property="splash" destination="NOg-lb-iRS" id="Jhe-Lb-gww"/>
+                        <outlet property="splash" destination="42K-Cl-3fJ" id="gBT-Mw-HGA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4aD-AE-ZXl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -889,72 +896,98 @@
                         <rect key="frame" x="0.0" y="0.0" width="800" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DMV-qP-1MR">
-                                <rect key="frame" x="378" y="482" width="44" height="34"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="Start">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <variation key="heightClass=compact-widthClass=compact" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="162" y="558" width="33" height="30"/>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="162" y="558" width="33" height="30"/>
-                                </variation>
-                                <connections>
-                                    <segue destination="1LZ-CZ-M5T" kind="unwind" unwindAction="unwindToMenuView:" id="KT8-4C-npI"/>
-                                </connections>
-                            </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M0G-nI-0MX">
-                                <rect key="frame" x="19" y="249" width="763" height="225"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="225" id="ul5-nY-cjE">
-                                        <variation key="heightClass=regular-widthClass=compact" constant="450"/>
-                                    </constraint>
-                                </constraints>
-                                <string key="text">In nuclear fission, high energy atoms collide causing the nucleus to split apart. The nuclear fragments fly apart at high speed and can collide with other atoms causing additional fragmentation and thus an energetic chain reaction is started. 
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h2V-Gu-uZX" userLabel="See Through View Container" customClass="SeeThroughView">
+                                <rect key="frame" x="0.0" y="246" width="800" height="308"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oOO-tN-BBV">
+                                        <rect key="frame" x="379" y="274" width="43" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="34" id="hdR-BA-SyF"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <state key="normal" title="Back">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <variation key="heightClass=compact-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                            <rect key="frame" x="363" y="558" width="35" height="30"/>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                            <rect key="frame" x="363" y="558" width="35" height="30"/>
+                                        </variation>
+                                        <connections>
+                                            <segue destination="1LZ-CZ-M5T" kind="unwind" unwindAction="unwindToIntroView:" id="buM-O6-C2p"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DMV-qP-1MR">
+                                        <rect key="frame" x="378" y="240" width="44" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="34" id="u6d-p8-DpC"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <state key="normal" title="Start">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <variation key="heightClass=compact-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                            <rect key="frame" x="162" y="558" width="33" height="30"/>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                            <rect key="frame" x="162" y="558" width="33" height="30"/>
+                                        </variation>
+                                        <connections>
+                                            <segue destination="1LZ-CZ-M5T" kind="unwind" unwindAction="unwindToMenuView:" id="KT8-4C-npI"/>
+                                        </connections>
+                                    </button>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M0G-nI-0MX">
+                                        <rect key="frame" x="50" y="0.0" width="700" height="240"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="240" id="Saz-3Y-RYN">
+                                                <variation key="heightClass=regular-widthClass=compact" constant="350"/>
+                                            </constraint>
+                                        </constraints>
+                                        <attributedString key="attributedText">
+                                            <fragment>
+                                                <string key="content">In nuclear fission, high energy atoms collide causing the nucleus to split apart. The nuclear fragments fly apart at high speed and can collide with other atoms causing additional fragmentation and thus an energetic chain reaction is started. 
 
-Fission HD is a particle simulation app which presents an artistic interpretation of a fission reaction. The basic controls are described below:
+Fission HD presents an artistic interpretation of a fission reaction. The controls are described below:
 
 •Touch the screen to draw atoms into the scene
-•Atoms can be drawn in two basic states - Active or Passive. Double tap to switch between these two states
-•Active atoms "explode" once drawn. The pattern of the explosion can be changed inside the mode menu.
-•Passive atoms remain stationary until an active fragment collides into them
+•Atoms can be drawn in two states: Active or Passive. Double tap to switch between the two.
+•Active atoms "explode" once drawn. The pattern of the explosion can be changed inside the menu.
+•Passive atoms remain stationary until an active particle collides into them.
 •The menu provides a variety of controls to customize the appearance and behaviour of the particles.</string>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oOO-tN-BBV">
-                                <rect key="frame" x="379" y="524" width="43" height="34"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="Back">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <variation key="heightClass=compact-widthClass=compact" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="363" y="558" width="35" height="30"/>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="363" y="558" width="35" height="30"/>
-                                </variation>
-                                <connections>
-                                    <segue destination="1LZ-CZ-M5T" kind="unwind" unwindAction="unwindToIntroView:" id="buM-O6-C2p"/>
-                                </connections>
-                            </button>
+                                                <attributes>
+                                                    <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <font key="NSFont" size="13" name="HelveticaNeue"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="M0G-nI-0MX" firstAttribute="top" secondItem="h2V-Gu-uZX" secondAttribute="top" id="Aen-0L-5be"/>
+                                    <constraint firstItem="oOO-tN-BBV" firstAttribute="top" secondItem="DMV-qP-1MR" secondAttribute="bottom" id="AsI-Gq-5bj"/>
+                                    <constraint firstItem="DMV-qP-1MR" firstAttribute="top" secondItem="M0G-nI-0MX" secondAttribute="bottom" id="HaY-s7-78J"/>
+                                    <constraint firstItem="DMV-qP-1MR" firstAttribute="centerX" secondItem="h2V-Gu-uZX" secondAttribute="centerX" id="LcO-cj-5Ga"/>
+                                    <constraint firstItem="M0G-nI-0MX" firstAttribute="centerX" secondItem="h2V-Gu-uZX" secondAttribute="centerX" id="Z8j-c3-IQ2"/>
+                                    <constraint firstItem="oOO-tN-BBV" firstAttribute="centerX" secondItem="h2V-Gu-uZX" secondAttribute="centerX" id="Zfq-O7-nZh"/>
+                                    <constraint firstAttribute="bottom" secondItem="oOO-tN-BBV" secondAttribute="bottom" id="u8w-1J-FKd"/>
+                                    <constraint firstItem="M0G-nI-0MX" firstAttribute="leading" secondItem="h2V-Gu-uZX" secondAttribute="leading" constant="50" id="xqK-Hs-Xoc">
+                                        <variation key="widthClass=compact" constant="10"/>
+                                    </constraint>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="M0G-nI-0MX" secondAttribute="centerY" constant="38.5" id="3D1-JZ-7gb"/>
-                            <constraint firstItem="M0G-nI-0MX" firstAttribute="leading" secondItem="AL4-UN-8T7" secondAttribute="leading" constant="19" id="Bzp-dF-4hI"/>
-                            <constraint firstItem="oOO-tN-BBV" firstAttribute="top" secondItem="DMV-qP-1MR" secondAttribute="bottom" constant="8" id="M8N-r2-XaK"/>
-                            <constraint firstAttribute="trailing" secondItem="M0G-nI-0MX" secondAttribute="trailing" constant="18" id="O62-2E-xZo"/>
-                            <constraint firstItem="oOO-tN-BBV" firstAttribute="centerX" secondItem="AL4-UN-8T7" secondAttribute="centerX" id="dmq-j2-gNc"/>
-                            <constraint firstItem="DMV-qP-1MR" firstAttribute="centerX" secondItem="AL4-UN-8T7" secondAttribute="centerX" id="f7o-0G-kld"/>
-                            <constraint firstItem="DMV-qP-1MR" firstAttribute="top" secondItem="M0G-nI-0MX" secondAttribute="bottom" constant="8" id="kdY-3J-hvT"/>
-                            <constraint firstAttribute="centerX" secondItem="M0G-nI-0MX" secondAttribute="centerX" constant="-0.5" id="she-hc-JJd"/>
+                            <constraint firstItem="h2V-Gu-uZX" firstAttribute="centerX" secondItem="AL4-UN-8T7" secondAttribute="centerX" id="Bor-ZA-9ZD"/>
+                            <constraint firstItem="h2V-Gu-uZX" firstAttribute="centerY" secondItem="AL4-UN-8T7" secondAttribute="centerY" id="cae-du-zKL"/>
+                            <constraint firstItem="h2V-Gu-uZX" firstAttribute="width" secondItem="AL4-UN-8T7" secondAttribute="width" id="fHV-pe-onl"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>

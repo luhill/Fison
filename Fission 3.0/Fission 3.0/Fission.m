@@ -29,6 +29,7 @@
     COLLAPSING_INTRO = NO;
     introTimer = 0.0;
     introCountDown = 1.0;
+    collapseDelay = 0.0;
     [self launchFission];
     return self;
 }
@@ -40,15 +41,23 @@
             introTimer=M_PIx2;
         }
         if (COLLAPSING_INTRO) {
+            collapseDelay++;
+            if (collapseDelay<30.0) {//wait 4 frames
+                
+            }else{
             introCountDown-=(2.0-introCountDown)*0.005;
             if (introCountDown<0.0) {
+                [self initializeParticles];
+                [viewPtr clearFramebuffers];
                 USING_INTRO = NO;
                 COLLAPSING_INTRO = NO;
                 introTimer =0.0;
                 introCountDown = 1.0;
+                collapseDelay=0.0;
                 //[self buildIntroGrid:MODE_PACTIVE];
                 [self explodeField:MODE_PACTIVE];
                 [self showToolBar];
+            }
             }
         }
     }
@@ -104,6 +113,7 @@
                 saps[i].vPtr1->t++;
                 saps[i].vPtr1->t%=60;
                 break;}
+                /*
             case MODE_PACTIVE:{//Passive with no collision
                 NUM_PASSIVE++;
                 if (saps[i].isFirstPassiveInGroup) {
@@ -131,15 +141,46 @@
                     saps[i].yc = saps[i].vPtr1->y;
                     saps[i].vPtr0->x = saps[i].vPtr1->x;
                     saps[i].vPtr0->y = saps[i].vPtr1->y;
+                    [self initializeParticle:i];
+                }
+                break;}*/
+            case MODE_PACTIVE:{//Passive with no collision
+                NUM_PASSIVE++;
+                if (saps[i].isFirstPassiveInGroup) {
+                    viewPtr->point_indices[NUM_PASSIVE_GROUPS]=vi+1;//saps[i].vPtr1_index;
+                    NUM_PASSIVE_GROUPS++;
+                }
+                saps[i].vPtr1->t++;
+                saps[i].vPtr1->t%=60;
+                time = saps[i].t/60000.0;
+                //NSLog(@"Binomial Layer:%i",saps[i].binomialLayer);
+                randAngle = saps[saps[i].leadIndex].randAngle/60000.0*M_PIx2;
+                randDistance = saps[saps[i].leadIndex].randDistance;
+                randTime = saps[saps[i].leadIndex].randTime/60000.0+0.5;
+                float cosA = cosf(randAngle);
+                float sinA = sinf(randAngle);
+                //float w = MIN(fabs(viewPtr->screen_info.view_width/2.0/(cosA==0.0?0.01f:cosA)), fabs(viewPtr->screen_info.view_height/2.0/(sinA==0.0?0.01f:sinA)));
+                distance = time*randDistance;
+                saps[i].vPtr1->x = distance*cosA+saps[i].xc;
+                saps[i].vPtr1->y = distance*sinA+saps[i].yc;
+                saps[i].t+=speed*randTime*(1.01-powf(time,2));
+                if (saps[i].t>=60000) {
+                    //[self spawnNewPassiveAtPactive:i];
+                    saps[i].mode = MODE_PASSIVE;
+                    saps[i].xc = saps[i].vPtr1->x;
+                    saps[i].yc = saps[i].vPtr1->y;
+                    saps[i].vPtr0->x = saps[i].vPtr1->x;
+                    saps[i].vPtr0->y = saps[i].vPtr1->y;
+                    [self initializeParticle:i];
                 }
                 break;}
             case MODE_ACTIVE0:{//Implode
                 saps[i].vPtr0->x = saps[i].vPtr1->x;
                 saps[i].vPtr0->y = saps[i].vPtr1->y;
                 
-                distance = sin(time*M_PI)*radius/5.0*randDistance;
-                saps[i].vPtr1->x = distance*cosf(randAngle+time*M_PIx2)+saps[i].xc;
-                saps[i].vPtr1->y = distance*sinf(randAngle+time*M_PIx2)+saps[i].yc;
+                distance = sin(time*M_PI)*radius/5.0;
+                saps[i].vPtr1->x = distance*cosf(randAngle+M_PI)+saps[i].xc;
+                saps[i].vPtr1->y = distance*sinf(randAngle+M_PI)+saps[i].yc;
                 saps[i].vPtr1->t+=speed*0.5;
                 if (saps[i].vPtr1->t>=60000) {
                     saps[i].vPtr1->t =0;
@@ -157,12 +198,9 @@
                 saps[i].vPtr1->t+=speed*randTime*(1.01-time*time);
                 break;}
             case MODE_ACTIVE2:{//Implode Lines
-                saps[i].vPtr0->x = saps[i].vPtr1->x;
-                saps[i].vPtr0->y = saps[i].vPtr1->y;
-                
-                distance = sin(time*M_PI)*radius/5.0;
-                saps[i].vPtr1->x = distance*cosf(randAngle+M_PI)+saps[i].xc;
-                saps[i].vPtr1->y = distance*sinf(randAngle+M_PI)+saps[i].yc;
+                distance = sin(time*M_PI)*radius/5.0*randDistance;
+                saps[i].vPtr1->x = distance*cosf(randAngle+time*M_PI)+saps[i].xc;
+                saps[i].vPtr1->y = distance*sinf(randAngle+time*M_PI)+saps[i].yc;
                 saps[i].vPtr1->t+=speed*0.5;
                 if (saps[i].vPtr1->t>=60000) {
                     saps[i].vPtr1->t =0;
@@ -283,7 +321,7 @@
     for (int i = 0; i < viewPtr->vertices_info.num_point_indices; i++) {
         viewPtr->point_indices[i]=i*2+1+viewPtr->vertices_info.offset_fissionPoints;
     }
-    [viewPtr pushElements];
+    //[viewPtr pushElements];
 }
 //Each particle is assigned an addition possition for collision mapping. A shader will use the index to position the particle into a grid based on index. This will allow data from the read pixels function to be mapped back to a particle with appropriate index.
 -(void)setCollisionMapIndex{
@@ -307,10 +345,11 @@
         saps[index].vPtr1->t = 0.0;
         saps[index].isFirstPassiveInGroup=NO;
     }else if(saps[index].mode==MODE_PACTIVE){
-        
+        //NSLog(@"set pactive:%i",index);
     }else{
+        //NSLog(@"set off:%i",index);
         if (saps[index].vPtr1->t>2000) {
-            saps[index].mode = MODE_OFF;
+            //saps[index].mode = MODE_OFF;
         }
     }
     //optional functionality could be to turn active particles off
@@ -329,6 +368,7 @@
             case MODE_PACTIVE:{
                 [self newParticleAtIndex:spawnIndex mode:mode x:x y:y fragIndex:i time:[self randomNumberBetween:0 maxNumber:59] first:i==0];
                 saps[spawnIndex].leadIndex = firstIndex;
+                [self initializeExplode:spawnIndex];
                 break;}
             case MODE_ACTIVE5:{
                 [self newParticleAtIndex:spawnIndex mode:mode x:x y:y fragIndex:i time:0 first:i==0];
@@ -366,20 +406,31 @@
 
 -(void)explodeField:(int)mode{
     for (int i = 0; i < NUM_PARTICLES; i+=NUM_PARTS) {
-        //[self newMoleculeAtX:viewPtr->screen_info.view_width/2.0 andY:viewPtr->screen_info.view_height/2.0 andMode:mode];
-        //[self initializeParticle:i atX:viewPtr->screen_info.view_width/2.0 andY:viewPtr->screen_info.view_height/2.0 andMode:mode andPart:0 isFirst:YES];
         [self newMoleculeAtX:viewPtr->screen_info.view_width/2.0 andY:viewPtr->screen_info.view_height/2.0 andMode:mode];
-        //[self newParticleAtIndex:i mode:mode x:viewPtr->screen_info.view_width/2.0 y:viewPtr->screen_info.view_height/2.0 fragIndex:i time:[self randomNumberBetween:0 maxNumber:59] first:YES];
     }
+}
+-(void)initializeExplode:(int)i{
+    float randX, randY, distance, angle;
+    randX = [self randomNumberBetween:0 maxNumber:viewPtr->screen_info.view_width]-viewPtr->screen_info.view_width/2;
+    randY = [self randomNumberBetween:0 maxNumber:viewPtr->screen_info.view_height]-viewPtr->screen_info.view_height/2;
+    distance = hypotf(randX, randY);
+    angle = atan2f(randY, randX);
+    angle+=M_PI;
+    saps[i].randAngle = angle/M_PIx2*60000;
+    saps[i].randDistance = distance;
 }
 -(void)initializeParticles{
     for (int i = 0; i < NUM_PARTICLES; i++) {
         [self newParticleAtIndex:i mode:MODE_OFF x:0.0 y:0.0 fragIndex:0 time:0 first:NO];
         saps[i].vPtr1->a =[self randomNumberBetween:15000 maxNumber:45000];
-        saps[i].randAngle = [self randomNumberBetween:0.0 maxNumber:60000];
-        saps[i].randDistance = [self randomNumberBetween:10 maxNumber:60000];
-        saps[i].randTime = [self randomNumberBetween:0 maxNumber:60000];
+        [self initializeParticle:i];
+        saps[i].mode = MODE_OFF;
     }
+}
+-(void)initializeParticle:(int)i{
+    saps[i].randAngle = [self randomNumberBetween:0.0 maxNumber:60000];
+    saps[i].randDistance = [self randomNumberBetween:10 maxNumber:60000];
+    saps[i].randTime = [self randomNumberBetween:0 maxNumber:60000];
 }
 -(void)initializeTouchGhosts{
     for (int i = 0; i < 10; i++) {

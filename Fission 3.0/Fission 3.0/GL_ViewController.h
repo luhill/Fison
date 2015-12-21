@@ -45,25 +45,26 @@ enum{
 };//Render texture targets. Two offscreen textures allows the ping-pong between renders (if required)
 enum{
     TEXTURE_OFFSCREEN_TARGET_0,
-    TEXTURE_OFFSCREEN_TARGET_1,
+    //TEXTURE_OFFSCREEN_TARGET_1,
     TEXTURE_OFFSCREEN_TARGET_2,
     NUM_RENDER_TEXTURES
 };//Render Textures
 enum{
     FRAMEBUFFER_OFFSCREEN_RENDER_0,
-    FRAMEBUFFER_OFFSCREEN_RENDER_1,
+    //FRAMEBUFFER_OFFSCREEN_RENDER_1,
     FRAMEBUFFER_OFFSCREEN_RENDER_2,
     FRAMEBUFFER_DEFAULT,   //!!Keep this framebuffer as the second to last index. Default framebuffer index is last.
     NUM_FRAMEBUFFERS
 };//Frame buffer index
 enum{
     RENDERBUFFER_TARGET_0,
-    RENDERBUFFER_TARGET_1,
+    //RENDERBUFFER_TARGET_1,
     RENDERBUFFER_TARGET_2,
     NUM_RENDERBUFFERS
 };//Renderbuffer index
 enum{
     program_intro_shader,
+    program_intro_shader_landscape,
     program_texture_shader,
     program_particle_shader,
     program_blur_shader,
@@ -114,6 +115,7 @@ typedef struct _Point2D{
 
 @interface GL_ViewController : GLKViewController{
 @public
+    bool isLandscape;
     ScreenInfo screen_info;
     Point2D *vertices;
     GLuint *point_indices;
@@ -140,10 +142,8 @@ typedef struct _Point2D{
     
     GLuint NUM_OFFSCREEN_FRAMEBUFFERS;
     bool USE_OFFSCREEN_DEPTH_BUFFER0;
-    bool USE_OFFSCREEN_DEPTH_BUFFER1;
     bool USE_OFFSCREEN_DEPTH_BUFFER2;
     bool USE_OFFSCREEN_TEXTURE0_CACHE;
-    bool USE_OFFSCREEN_TEXTURE1_CACHE;
     bool USE_OFFSCREEN_TEXTURE2_CACHE;
     int draw_mode;
     

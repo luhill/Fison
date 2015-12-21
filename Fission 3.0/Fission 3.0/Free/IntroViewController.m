@@ -29,8 +29,8 @@
     // Do any additional setup after loading the view.
 }
 -(void)viewDidAppear:(BOOL)animated{
-    
-    [UIView animateWithDuration:2.0 animations:^{
+    [super viewDidAppear:animated];
+    [UIView animateWithDuration:1.5 animations:^{
         splash.alpha = 1.0;
         [self.view layoutIfNeeded];
     }];

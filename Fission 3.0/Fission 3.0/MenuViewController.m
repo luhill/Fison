@@ -10,6 +10,8 @@
 #import "AppDelegate.h"
 #import "GlobalAccess.h"
 #import "GL_Texture.h"
+#import "GL_OpenGL.h"
+#import "UIImage+RotatedImage.h"
 @interface MenuViewController ()
 
 @end
@@ -27,6 +29,8 @@ AppDelegate *appDelegate;
 @synthesize seeThroughView,view0, view1, view2, view3;
 @synthesize imagePicker, imagePopOver;
 @synthesize renderModeSwitch;
+@synthesize backgroundImage;
+@synthesize upgradeButton;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -38,13 +42,26 @@ AppDelegate *appDelegate;
     [data->glView->fission restoreDefaultSettings];
     [data->glView->fission setParticleCount];
     [colorPicker selectRow:1 inComponent:0 animated:NO];
-    loadPhoto.hidden = YES;
+    [self setupFreeVersionUI:loadPhoto slider2:slider_particleCount2];
     [self hideToolBarWithAnimation:NO];
+    button_showToolbar.hidden = YES;
+    upgradeButton.hidden = YES;
+    loadPhoto.hidden = YES;
     backgroundImage = [UIImage imageNamed:@"background"];
-}
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
+    UIColor *back = [UIColor clearColor];//[UIColor colorWithWhite:1.0 alpha:0.1];
+    view0.backgroundColor = back;
+    view1.backgroundColor = back;
+    view2.backgroundColor = back;
+    view3.backgroundColor = back;
     [self initilizeBackgroundPhoto];
+
+}
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    //[self initilizeBackgroundPhoto];
+}
+-(void)setupFreeVersionUI:(UIButton*)loadPhoto slider2:(UISlider*)slider2{
+    //do nothing. free version subclasses this method to setup ui
 }
 //////////////////////////////////////////////////////////////////////////////////////
 //-------------------------Application Specific Methods-----------------------------//
@@ -53,13 +70,15 @@ AppDelegate *appDelegate;
 -(IBAction)unwindToMenuView:(UIStoryboardSegue*)unwindSegue{
     data->glView->fission->COLLAPSING_INTRO = YES;
 }
--(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
-    [data->glView setBackGroundImage:[self scaleImageToSize:[self rotateImage:backgroundImage orientation:toInterfaceOrientation]]];
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
+    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+    [self initilizeBackgroundPhoto];
 }
+
 #pragma mark - Color Picker
 -(void)initilizeBackgroundPhoto{
     //called when glview loads
-    [data->glView setBackGroundImage:[self scaleImageToSize:[self rotateImage:backgroundImage orientation:self.interfaceOrientation]]];
+    [data->glView setBackGroundImage:[backgroundImage imageForOrientation:self.interfaceOrientation andFrame:self.view.frame toGlFrame:data->glView.view.frame glOrientation:data.glView.interfaceOrientation]];
 }
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
     return 1;
@@ -87,10 +106,14 @@ AppDelegate *appDelegate;
         return myImageView;
     }
 }
+-(void)hideLoadPhoto:(UIButton*)loadPhoto{
+    
+}
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     NSString* imgName = [colorArray objectAtIndex:row];
     if ([imgName isEqual:@"custom"]) {
         loadPhoto.hidden = NO;
+        [self hideLoadPhoto:loadPhoto];
         data->glView->fission->COLOR_MODE_IMAGE = YES;
         //[data->glView setColorMapWithImage:((UIImageView*)([pickerView viewForRow:row forComponent:component])).image];
     }else{
@@ -101,70 +124,13 @@ AppDelegate *appDelegate;
     
 }
 #pragma mark - Image Picker
-// This method is called when an image has been chosen from the library or taken from the camera.
--(UIImage*)rotateImage:(UIImage*)original orientation:(UIInterfaceOrientation)uiOrientation{
-    UIImageOrientation newOrientation;
-    //UIInterfaceOrientation uiOrientation;
-    
-    //uiOrientation = self.interfaceOrientation;
-    //uiOrientation = [[UIApplication sharedApplication] statusBarOrientation];
-    //UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
-    
-    switch (uiOrientation) {
-        case UIInterfaceOrientationPortrait:{
-            NSLog(@"Portrait");
-            newOrientation = UIImageOrientationUp;
-        }break;
-        case UIInterfaceOrientationPortraitUpsideDown:{
-            NSLog(@"Portrait Down");
-            newOrientation = UIImageOrientationDown;
-        }break;
-        case UIInterfaceOrientationLandscapeLeft:{
-            NSLog(@"Land Left");
-            newOrientation = UIImageOrientationLeft;
-        }break;
-        case UIInterfaceOrientationLandscapeRight:{
-            NSLog(@"Land right");
-            newOrientation = UIImageOrientationRight;
-        }break;
-        default:{//flat or other
-            NSLog(@"Other");
-            newOrientation = UIImageOrientationUp;
-        }break;
-    }
-    
-    UIImage * rotatedImage = [[UIImage alloc] initWithCGImage: original.CGImage scale: 1.0 orientation: newOrientation];
-    return rotatedImage;
-}
-- (UIImage *)scaleImageToSize:(UIImage*)original{
-    CGRect viewRect = self.view.frame;
-    //Frame is no longer constant in ios9 and changes when screen rotates
-    viewRect.size.width = MIN(self.view.frame.size.width, self.view.frame.size.height);
-    viewRect.size.height = MAX(self.view.frame.size.width, self.view.frame.size.height);
-    CGRect scaledImageRect = CGRectZero;
-    
-    CGFloat aspectWidth = viewRect.size.width / original.size.width;
-    CGFloat aspectHeight = viewRect.size.height / original.size.height;
-    CGFloat aspectRatio = MAX( aspectWidth, aspectHeight );
-    
-    scaledImageRect.size.width = original.size.width * aspectRatio;
-    scaledImageRect.size.height = original.size.height * aspectRatio;
-    scaledImageRect.origin.x = (viewRect.size.width - scaledImageRect.size.width) / 2.0f;
-    scaledImageRect.origin.y = (viewRect.size.height - scaledImageRect.size.height) / 2.0f;
-    
-    UIGraphicsBeginImageContextWithOptions( viewRect.size, NO, 0 );
-    [original drawInRect:scaledImageRect];
-    UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return scaledImage;
-    
-}
+
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
     backgroundImage = image;
-    [data->glView setBackGroundImage:[self scaleImageToSize:[self rotateImage:backgroundImage orientation:self.interfaceOrientation]]];
-
+    NSLog(@"Image Orientation:%li",(long)backgroundImage.imageOrientation);
+    [self initilizeBackgroundPhoto];
+    
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         [imagePopOver dismissPopoverAnimated:YES];
     }
@@ -197,11 +163,14 @@ AppDelegate *appDelegate;
 #pragma mark - Interface Buttons
 -(IBAction)showIntro:(id)sender{
     [self performSegueWithIdentifier:@"PushIntro" sender:sender];
-    [self hideToolBarWithAnimation:YES];
+    [self hideToolBarWithAnimation:NO];
     data->glView->fission->USING_INTRO = YES;
     data->glView->fission->introTimer = 0.0;
     data->glView->fission->introCountDown = 1.0;
     data->glView->fission->COLLAPSING_INTRO = NO;
+}
+-(IBAction)upgradePressed:(id)sender{
+    
 }
 -(IBAction)restoreDefaultSettingsPressed:(id)sender{
     [data->glView->fission restoreDefaultSettings];
@@ -217,9 +186,6 @@ AppDelegate *appDelegate;
     button_mode5.selected = NO;
     b.selected = YES;
     [data.glView->fission setMode:(int)b.tag];
-}
--(IBAction)upgradePressed:(id)sender{
-    
 }
 -(IBAction)buildFissionGrid:(id)sender{
     [data->glView->fission explodeField:MODE_PACTIVE];
@@ -239,15 +205,20 @@ AppDelegate *appDelegate;
 -(IBAction)particleFragmentsChanged:(id)sender{
     [data->glView->fission particleFragmentsChanged: slider_particleFragments.value];
 }
+-(void)setUpgradeButtonVisible:(UIButton*)button hideIt:(BOOL)hide{
+    
+}
 -(IBAction)particleCountChanged:(id)sender{
     float val = slider_particleCount.value;
     if (val<1.0) {
+        [self setUpgradeButtonVisible:upgradeButton hideIt:YES];
         slider_particleCount2.hidden = YES;
         moreParticlesLabel.hidden = YES;
         slider_particleCount2.value = 0.0;
     }else{
         slider_particleCount2.hidden = NO;
         moreParticlesLabel.hidden = NO;
+        [self setUpgradeButtonVisible:upgradeButton hideIt:NO];
     }
     int count = [data->glView->fission particleCountChanged: slider_particleCount.value extraParticles:slider_particleCount2.value];
     particleCount.text = [NSString stringWithFormat:@"%1i",count];

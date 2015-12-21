@@ -30,6 +30,11 @@
 		37741C551C15226A00EAF336 /* shader_line_image.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 37741C541C15226A00EAF336 /* shader_line_image.fsh */; };
 		37741C581C1653E000EAF336 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37741C571C1653E000EAF336 /* IntroViewController.m */; };
 		37741C5B1C1672D000EAF336 /* CustomRotatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37741C5A1C1672D000EAF336 /* CustomRotatingView.m */; };
+		3782BF081C23F5E500CD440D /* shader_intro_landscape.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 37C88BDA1C23C96600E093DB /* shader_intro_landscape.vsh */; };
+		3782BF091C23F5E800CD440D /* shader_intro_landscape.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 37C88BDC1C23C97800E093DB /* shader_intro_landscape.fsh */; };
+		3782BF101C24E78500CD440D /* CAEAGLLayer+Retained.m in Sources */ = {isa = PBXBuildFile; fileRef = 3782BF0F1C24E78500CD440D /* CAEAGLLayer+Retained.m */; };
+		3782BF131C250B2000CD440D /* UIImage+RotatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3782BF121C250B2000CD440D /* UIImage+RotatedImage.m */; };
+		3782BF141C250B5400CD440D /* UIImage+RotatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3782BF121C250B2000CD440D /* UIImage+RotatedImage.m */; };
 		379D09B21C0E83F700AF7C83 /* shader_sprite_basic.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 379D09B11C0E83F700AF7C83 /* shader_sprite_basic.vsh */; };
 		379D09B41C0E840E00AF7C83 /* shader_sprite_basic.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 379D09B31C0E840E00AF7C83 /* shader_sprite_basic.fsh */; };
 		379D09B61C10010500AF7C83 /* shader_line.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 379D09B51C10010500AF7C83 /* shader_line.vsh */; };
@@ -95,6 +100,10 @@
 		37C0F4611BF8227800B51A48 /* shader_collision.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 37C0F4601BF8227800B51A48 /* shader_collision.fsh */; };
 		37C0F4631BF97CC200B51A48 /* shader_point.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 37C0F4621BF97CC200B51A48 /* shader_point.vsh */; };
 		37C0F4651BF97CD000B51A48 /* shader_point.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 37C0F4641BF97CD000B51A48 /* shader_point.fsh */; };
+		37C5A0601C25625500B3A822 /* CAEAGLLayer+Retained.m in Sources */ = {isa = PBXBuildFile; fileRef = 3782BF0F1C24E78500CD440D /* CAEAGLLayer+Retained.m */; };
+		37C88BDB1C23C96600E093DB /* shader_intro_landscape.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 37C88BDA1C23C96600E093DB /* shader_intro_landscape.vsh */; };
+		37C88BDD1C23C97800E093DB /* shader_intro_landscape.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 37C88BDC1C23C97800E093DB /* shader_intro_landscape.fsh */; };
+		37C88BDF1C23D4B700E093DB /* Fission Lite-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37C88BDE1C23D4B700E093DB /* Fission Lite-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -135,12 +144,15 @@
 		37741C591C1672D000EAF336 /* CustomRotatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomRotatingView.h; sourceTree = "<group>"; };
 		37741C5A1C1672D000EAF336 /* CustomRotatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomRotatingView.m; sourceTree = "<group>"; };
 		37741C5C1C1673F600EAF336 /* InstructionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstructionsViewController.h; sourceTree = "<group>"; };
+		3782BF0E1C24E78500CD440D /* CAEAGLLayer+Retained.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAEAGLLayer+Retained.h"; sourceTree = "<group>"; };
+		3782BF0F1C24E78500CD440D /* CAEAGLLayer+Retained.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAEAGLLayer+Retained.m"; sourceTree = "<group>"; };
+		3782BF111C250B2000CD440D /* UIImage+RotatedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RotatedImage.h"; sourceTree = "<group>"; };
+		3782BF121C250B2000CD440D /* UIImage+RotatedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RotatedImage.m"; sourceTree = "<group>"; };
 		379D09B11C0E83F700AF7C83 /* shader_sprite_basic.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader_sprite_basic.vsh; sourceTree = "<group>"; };
 		379D09B31C0E840E00AF7C83 /* shader_sprite_basic.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader_sprite_basic.fsh; sourceTree = "<group>"; };
 		379D09B51C10010500AF7C83 /* shader_line.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader_line.vsh; sourceTree = "<group>"; };
 		379D09B71C10011500AF7C83 /* shader_line.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader_line.fsh; sourceTree = "<group>"; };
 		379E97861C1E6D4B00082599 /* Fission Lite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fission Lite.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		379E97871C1E6D4B00082599 /* Fission 3.0 copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Fission 3.0 copy-Info.plist"; path = "/Users/luhill/Documents/Apps/Fission 3.0/Fission 3.0 copy-Info.plist"; sourceTree = "<absolute>"; };
 		379E978B1C1E732200082599 /* Free Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Free Images.xcassets"; sourceTree = "<group>"; };
 		379E978D1C1E734300082599 /* Paid Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Paid Images.xcassets"; sourceTree = "<group>"; };
 		379E97901C1E835200082599 /* TargetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TargetViewController.h; path = Paid/TargetViewController.h; sourceTree = "<group>"; };
@@ -168,6 +180,9 @@
 		37C0F4601BF8227800B51A48 /* shader_collision.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader_collision.fsh; sourceTree = "<group>"; };
 		37C0F4621BF97CC200B51A48 /* shader_point.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader_point.vsh; sourceTree = "<group>"; };
 		37C0F4641BF97CD000B51A48 /* shader_point.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader_point.fsh; sourceTree = "<group>"; };
+		37C88BDA1C23C96600E093DB /* shader_intro_landscape.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader_intro_landscape.vsh; sourceTree = "<group>"; };
+		37C88BDC1C23C97800E093DB /* shader_intro_landscape.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader_intro_landscape.fsh; sourceTree = "<group>"; };
+		37C88BDE1C23D4B700E093DB /* Fission Lite-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Fission Lite-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +243,8 @@
 				37741C541C15226A00EAF336 /* shader_line_image.fsh */,
 				375A1DDA1C16AC4200DE6DD8 /* shader_intro.vsh */,
 				375A1DDC1C16AC5100DE6DD8 /* shader_intro.fsh */,
+				37C88BDA1C23C96600E093DB /* shader_intro_landscape.vsh */,
+				37C88BDC1C23C97800E093DB /* shader_intro_landscape.fsh */,
 			);
 			path = Shaders;
 			sourceTree = "<group>";
@@ -237,7 +254,6 @@
 			children = (
 				375DD5DB1BF1D5C8002F848B /* Fission 3.0 */,
 				375DD5DA1BF1D5C8002F848B /* Products */,
-				379E97871C1E6D4B00082599 /* Fission 3.0 copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -280,6 +296,8 @@
 		375DD5DC1BF1D5C8002F848B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				37C88BDE1C23D4B700E093DB /* Fission Lite-Info.plist */,
+				375DD5DD1BF1D5C8002F848B /* Info.plist */,
 				379E97AA1C1E98BF00082599 /* iRate.h */,
 				379E97AB1C1E98BF00082599 /* iRate.m */,
 				37C0F4581BF456CF00B51A48 /* ShaderHelper.h */,
@@ -290,7 +308,6 @@
 				375DD6091BF2BE2B002F848B /* SeeThroughView.m */,
 				375DD60B1BF2BEC0002F848B /* RadioStyleSegmentControl_Luke.h */,
 				375DD60C1BF2BEC0002F848B /* RadioStyleSegmentControl_Luke.m */,
-				375DD5DD1BF1D5C8002F848B /* Info.plist */,
 				375DD5DE1BF1D5C8002F848B /* main.m */,
 				375386021C0BF3D4004CB31F /* TrackTouch.h */,
 				375386031C0BF3D4004CB31F /* TrackTouch.m */,
@@ -298,6 +315,10 @@
 				379E97A71C1E948500082599 /* InstructionsViewController.m */,
 				37741C591C1672D000EAF336 /* CustomRotatingView.h */,
 				37741C5A1C1672D000EAF336 /* CustomRotatingView.m */,
+				3782BF0E1C24E78500CD440D /* CAEAGLLayer+Retained.h */,
+				3782BF0F1C24E78500CD440D /* CAEAGLLayer+Retained.m */,
+				3782BF111C250B2000CD440D /* UIImage+RotatedImage.h */,
+				3782BF121C250B2000CD440D /* UIImage+RotatedImage.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -370,6 +391,9 @@
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = 6FXD7J8XUQ;
 					};
+					379E97561C1E6D4B00082599 = {
+						DevelopmentTeam = 6FXD7J8XUQ;
+					};
 				};
 			};
 			buildConfigurationList = 375DD5D41BF1D5C8002F848B /* Build configuration list for PBXProject "Fission 3.0" */;
@@ -406,8 +430,11 @@
 				3708037D1BF4236100FF9A6F /* shader_particle.vsh in Resources */,
 				379D09B81C10011500AF7C83 /* shader_line.fsh in Resources */,
 				3708037F1BF4236E00FF9A6F /* shader_particle.fsh in Resources */,
+				37C88BDB1C23C96600E093DB /* shader_intro_landscape.vsh in Resources */,
 				379D09B21C0E83F700AF7C83 /* shader_sprite_basic.vsh in Resources */,
 				370803831BF423AF00FF9A6F /* shader_blur.fsh in Resources */,
+				37C88BDD1C23C97800E093DB /* shader_intro_landscape.fsh in Resources */,
+				37C88BDF1C23D4B700E093DB /* Fission Lite-Info.plist in Resources */,
 				37C0F45F1BF8226B00B51A48 /* shader_collision.vsh in Resources */,
 				370803791BF4219E00FF9A6F /* shader_texture.vsh in Resources */,
 				370803811BF423A300FF9A6F /* shader_blur.vsh in Resources */,
@@ -437,8 +464,10 @@
 				379E97711C1E6D4B00082599 /* shader_particle.vsh in Resources */,
 				379E97721C1E6D4B00082599 /* shader_line.fsh in Resources */,
 				379E97731C1E6D4B00082599 /* shader_particle.fsh in Resources */,
+				3782BF081C23F5E500CD440D /* shader_intro_landscape.vsh in Resources */,
 				379E97741C1E6D4B00082599 /* shader_sprite_basic.vsh in Resources */,
 				379E97751C1E6D4B00082599 /* shader_blur.fsh in Resources */,
+				3782BF091C23F5E800CD440D /* shader_intro_landscape.fsh in Resources */,
 				379E97761C1E6D4B00082599 /* shader_collision.vsh in Resources */,
 				379E97771C1E6D4B00082599 /* shader_texture.vsh in Resources */,
 				379E97781C1E6D4B00082599 /* shader_blur.vsh in Resources */,
@@ -466,9 +495,11 @@
 				375386011C02C6F1004CB31F /* Fission_Interface.m in Sources */,
 				37C0F4561BF456C000B51A48 /* GL_Touches.m in Sources */,
 				370803871BF4474C00FF9A6F /* AppDelegate.m in Sources */,
+				3782BF131C250B2000CD440D /* UIImage+RotatedImage.m in Sources */,
 				370803881BF4474C00FF9A6F /* GlobalAccess.m in Sources */,
 				37C0F4471BF4564B00B51A48 /* GL_ViewController.m in Sources */,
 				370803891BF4474C00FF9A6F /* SeeThroughView.m in Sources */,
+				3782BF101C24E78500CD440D /* CAEAGLLayer+Retained.m in Sources */,
 				3708038A1BF4474C00FF9A6F /* RadioStyleSegmentControl_Luke.m in Sources */,
 				37C0F4541BF456C000B51A48 /* GL_OpenGL.m in Sources */,
 				3708038B1BF4474C00FF9A6F /* main.m in Sources */,
@@ -496,7 +527,9 @@
 				379E975C1C1E6D4B00082599 /* GlobalAccess.m in Sources */,
 				379E975D1C1E6D4B00082599 /* GL_ViewController.m in Sources */,
 				379E975E1C1E6D4B00082599 /* SeeThroughView.m in Sources */,
+				37C5A0601C25625500B3A822 /* CAEAGLLayer+Retained.m in Sources */,
 				379E975F1C1E6D4B00082599 /* RadioStyleSegmentControl_Luke.m in Sources */,
+				3782BF141C250B5400CD440D /* UIImage+RotatedImage.m in Sources */,
 				379E97601C1E6D4B00082599 /* GL_OpenGL.m in Sources */,
 				379E97611C1E6D4B00082599 /* main.m in Sources */,
 				379E97AD1C1E98BF00082599 /* iRate.m in Sources */,
@@ -537,6 +570,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -575,6 +609,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				"VALID_ARCHS[sdk=*]" = "arm64 armv7 armv7s armv6";
 			};
 			name = Debug;
 		};
@@ -582,6 +617,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -595,7 +631,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lucas Hill";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lucas Hill";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -613,6 +650,7 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+				"VALID_ARCHS[sdk=*]" = "arm64 armv7 armv7s armv6";
 			};
 			name = Release;
 		};
@@ -626,7 +664,7 @@
 				INFOPLIST_FILE = "Fission 3.0/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.luke.fission;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.luke.fission-20";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -642,7 +680,7 @@
 				INFOPLIST_FILE = "Fission 3.0/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.luke.fission;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.luke.fission-20";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -655,7 +693,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = "Fission 3.0 copy-Info.plist";
+				INFOPLIST_FILE = "Fission 3.0/Fission Lite-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.luke.fission-lite";
@@ -671,7 +709,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = "Fission 3.0 copy-Info.plist";
+				INFOPLIST_FILE = "Fission 3.0/Fission Lite-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.luke.fission-lite";

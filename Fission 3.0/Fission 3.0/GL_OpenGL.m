@@ -11,12 +11,10 @@
 @implementation GL_ViewController (GL_OpenGL)
 
 -(void)launchOpenGL{
-    NUM_OFFSCREEN_FRAMEBUFFERS = 3;//If only default, set to 0
+    NUM_OFFSCREEN_FRAMEBUFFERS = 2;//If only default, set to 0
     USE_OFFSCREEN_DEPTH_BUFFER0 = NO;//Attach depth buffer to offscreen framebuffer
-    USE_OFFSCREEN_DEPTH_BUFFER1 = NO;
     USE_OFFSCREEN_DEPTH_BUFFER2 = NO;
     USE_OFFSCREEN_TEXTURE0_CACHE = YES;//useful if need to frequently access a texture rendered by opengly
-    USE_OFFSCREEN_TEXTURE1_CACHE = NO;//useful if need to frequently access a texture rendered by opengly
     USE_OFFSCREEN_TEXTURE2_CACHE = NO;
     uniforms = (GLuint*)malloc(NUM_UNIFORMS*sizeof(GLuint));
     index_framebuffers = (GLuint*)malloc(NUM_OFFSCREEN_FRAMEBUFFERS*sizeof(GLuint));
@@ -27,7 +25,12 @@
     //determine screen size
     screen_info.view_height = self.view.bounds.size.height;
     screen_info.view_width = self.view.bounds.size.width;
-    //self.view.contentScaleFactor = 2.0;//Performance Issues if 2x
+    if (screen_info.view_width>screen_info.view_height) {
+        isLandscape=YES;
+    }else{
+        isLandscape=NO;
+    }
+    //self.view.contentScaleFactor = 1.0;//Performance Issues if 2x
     screen_info.view_scale_factor = self.view.contentScaleFactor;
     screen_info.offscreen_scale_factor1 = 1.0f;
     screen_info.offscreen_scale_factor2 = 1.0/4.0f;
@@ -42,8 +45,8 @@
     screen_info.updates_per_frame = 1.0f;
     
     
-    screen_info.render_texture0_height = 256;
-    screen_info.render_texture0_width = 256;
+    screen_info.render_texture0_height = 512;
+    screen_info.render_texture0_width = 512;
     vertices_info.num_point_indices = screen_info.render_texture0_height*screen_info.render_texture0_width;
     vertices_info.num_line_indices = vertices_info.num_point_indices*2;
     
@@ -98,13 +101,13 @@
             glClearColor(0.0, 0.0, 0.0, 0.0);
             glClear(GL_COLOR_BUFFER_BIT);
             break;}
+            /*
         case FRAMEBUFFER_OFFSCREEN_RENDER_1:{//offscreen render target for display
             glBindFramebuffer(GL_FRAMEBUFFER, index_framebuffers[FRAMEBUFFER_OFFSCREEN_RENDER_1]);
-            //glViewport(0, 0, screen_info.render_texture1_width, screen_info.render_texture1_height);
-            //glClearDepthf(0.0);
-            //glClear(GL_DEPTH_BUFFER_BIT);
+            glViewport(0, 0, screen_info.render_texture1_width, screen_info.render_texture1_height);
+            
             //This framebuffer uses additive blending for leaving motion trails. glClear would have undesired results
-            break;}
+            break;}*/
         case FRAMEBUFFER_OFFSCREEN_RENDER_2:{//collision render target
             glBindFramebuffer(GL_FRAMEBUFFER, index_framebuffers[FRAMEBUFFER_OFFSCREEN_RENDER_2]);
             glViewport(0, 0, screen_info.render_texture2_width, screen_info.render_texture2_height);
@@ -124,6 +127,11 @@
     
     switch (program) {
         case program_intro_shader:{
+            glUniform1f(pro->uniforms[UNIFORM_BLUR], fission->introTimer);
+            glUniform1f(pro->uniforms[UNIFORM_POINT_SIZE], fission->introCountDown);
+            glUniform2f(pro->uniforms[UNIFORM_PROJECTION_2D_A], projection_screen.x, projection_screen.y);
+            break;}
+        case program_intro_shader_landscape:{
             glUniform1f(pro->uniforms[UNIFORM_BLUR], fission->introTimer);
             glUniform1f(pro->uniforms[UNIFORM_POINT_SIZE], fission->introCountDown);
             glUniform2f(pro->uniforms[UNIFORM_PROJECTION_2D_A], projection_screen.x, projection_screen.y);
@@ -260,7 +268,7 @@
     /*top left    */ v = &vertices[i+3]; v->x = l;  v->y = t;   v->t = 0.0f; v->a = ty;    //v->tx2 = 0.0f; v->ty2 = ty;
     /*bottom right*/ v = &vertices[i+4]; v->x = r;  v->y = b;   v->t = tx;   v->a = 0.0f;  //v->tx2 = tx;   v->ty2 = 0.0f;
     /*top right   */ v = &vertices[i+5]; v->x = r;  v->y = t;   v->t = tx;   v->a = ty;    //v->tx2 = tx;   v->ty2 = ty;
-    [self pushData];
+    [self pushData:vertices_info.num_total_vertices];
 }
 -(void)buildRenderQuad{
     int i = vertices_info.offset_render_quad;
@@ -276,21 +284,31 @@
     /*top left    */ v = &vertices[i+3]; v->x = l;  v->y = t;   v->t = 0.0f; v->a = ty;
     /*bottom right*/ v = &vertices[i+4]; v->x = r;  v->y = b;   v->t = tx;   v->a = 0.0f;
     /*top right   */ v = &vertices[i+5]; v->x = r;  v->y = t;   v->t = tx;   v->a = ty;
-    [self pushData];
+    [self pushData:vertices_info.num_total_vertices];
 }
--(void)pushData{
+-(void)pushData:(int)count{
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-    glBufferSubData(GL_ARRAY_BUFFER, 0, vertices_info.num_total_vertices*sizeof(Point2D), vertices);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, count/*vertices_info.num_total_vertices*/*sizeof(Point2D), vertices);
 }
--(void)pushElements{
+-(void)pushElements_point:(int)count{
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexPointBuffer);
-    glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, vertices_info.num_point_indices*sizeof(GLuint), point_indices);
+    glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, count/*vertices_info.num_point_indices*/*sizeof(GLuint), point_indices);
+}
+-(void)pushElements_line:(int)count{
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexLineBuffer);
-    glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, vertices_info.num_line_indices*sizeof(GLuint), line_indices);
+    glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, count/*vertices_info.num_line_indices*/*sizeof(GLuint), line_indices);
 }
 -(void)loadShaders{
     //Order of shaders made here must match program enum order
     ShaderHelper *tempShader = [[ShaderHelper alloc] initWithVertexFileName:@"shader_intro" andFragFileName:@"shader_intro" andDescription:@"Intro shader"];
+    [programs addObject:tempShader];
+    tempShader->useUniform[UNIFORM_PROJECTION_2D_A]=YES;
+    tempShader->useUniform[UNIFORM_BLUR]=YES;
+    tempShader->useUniform[UNIFORM_POINT_SIZE]=YES;
+    tempShader->useAttribute[ATTRIBUTE_POSITION] = YES;
+    [tempShader load];
+    
+    tempShader = [[ShaderHelper alloc] initWithVertexFileName:@"shader_intro_landscape" andFragFileName:@"shader_intro_landscape" andDescription:@"Intro shader_landscape"];
     [programs addObject:tempShader];
     tempShader->useUniform[UNIFORM_PROJECTION_2D_A]=YES;
     tempShader->useUniform[UNIFORM_BLUR]=YES;
@@ -339,6 +357,7 @@
     tempShader->useUniform[UNIFORM_PROJECTION_2D_B]=YES;
     tempShader->useUniform[UNIFORM_POINT_SIZE]=YES;
     tempShader->useAttribute[ATTRIBUTE_POSITION] = YES;
+    tempShader->useAttribute[ATTRIBUTE_TEXTURE_SHORT] = YES;
     [tempShader load];
     
     tempShader = [[ShaderHelper alloc] initWithVertexFileName:@"shader_line" andFragFileName:@"shader_line" andDescription:@"Line_shader"];
@@ -347,6 +366,7 @@
     tempShader->useUniform[UNIFORM_PROJECTION_2D_B]=YES;
     tempShader->useUniform[UNIFORM_POINT_SIZE]=YES;
     tempShader->useAttribute[ATTRIBUTE_POSITION] = YES;
+    tempShader->useAttribute[ATTRIBUTE_TEXTURE_SHORT] = YES;
     [tempShader load];
     
     tempShader = [[ShaderHelper alloc] initWithVertexFileName:@"shader_sprite" andFragFileName:@"shader_sprite" andDescription:@"Sprite_shader"];
@@ -379,10 +399,8 @@
     glClearColor(0.0, 0.0, 0.0, 0.0);
     glBindFramebuffer(GL_FRAMEBUFFER, index_framebuffers[FRAMEBUFFER_OFFSCREEN_RENDER_0]);
     glClear(GL_COLOR_BUFFER_BIT);
-    glBindFramebuffer(GL_FRAMEBUFFER, index_framebuffers[FRAMEBUFFER_OFFSCREEN_RENDER_1]);
-    glClear(GL_COLOR_BUFFER_BIT);
-    glClearDepthf(0.0);
-    glClear(GL_DEPTH_BUFFER_BIT);
+    //glBindFramebuffer(GL_FRAMEBUFFER, index_framebuffers[FRAMEBUFFER_OFFSCREEN_RENDER_1]);
+    //glClear(GL_COLOR_BUFFER_BIT);
     glBindFramebuffer(GL_FRAMEBUFFER, index_framebuffers[FRAMEBUFFER_OFFSCREEN_RENDER_2]);
     glClear(GL_COLOR_BUFFER_BIT);
     NSLog(@"Clearing Buff");
@@ -420,6 +438,7 @@
          }
         glBindTexture(GL_TEXTURE_2D, index_textures_render[TEXTURE_OFFSCREEN_TARGET_0]);//unbind target textures for the
      }
+    /*
     if (NUM_OFFSCREEN_FRAMEBUFFERS>1) {//Dual Offscreen Buffer
         glBindFramebuffer(GL_FRAMEBUFFER, index_framebuffers[FRAMEBUFFER_OFFSCREEN_RENDER_1]);
         
@@ -442,8 +461,8 @@
         if(status != GL_FRAMEBUFFER_COMPLETE) {
             NSLog(@"Failed to make complete framebuffer object: Second offscreen Buffer %x", status);
         }
-    }
-    if (NUM_OFFSCREEN_FRAMEBUFFERS>2) {//Triple Offscreen Buffer
+    }*/
+    if (NUM_OFFSCREEN_FRAMEBUFFERS>1) {//Triple Offscreen Buffer
         glBindFramebuffer(GL_FRAMEBUFFER, index_framebuffers[FRAMEBUFFER_OFFSCREEN_RENDER_2]);
         
         glBindRenderbuffer(GL_RENDERBUFFER, index_renderbuffers[RENDERBUFFER_TARGET_2]);
@@ -490,7 +509,6 @@
     CFDictionarySetValue(attrs,
                          kCVPixelBufferIOSurfacePropertiesKey,
                          empty);
-    
     // for simplicity, lets just say the image is 640x480
     CVPixelBufferCreate(kCFAllocatorDefault, screen_info.render_texture0_width, screen_info.render_texture0_height,
                         /*kCVPixelFormatType_32BGRA*/kCVPixelFormatType_32BGRA,
@@ -501,6 +519,7 @@
     // first create a texture from our renderTarget
     // textureCache will be what you previously made with CVOpenGLESTextureCacheCreate
     CVOpenGLESTextureRef renderTexture;
+    
     //CVOpenGLESTextureCacheCreateTextureFromImage(<#CFAllocatorRef allocator#>, <#CVOpenGLESTextureCacheRef textureCache#>, <#CVImageBufferRef sourceImage#>, <#CFDictionaryRef textureAttributes#>, <#GLenum target#>, <#GLint internalFormat#>, <#GLsizei width#>, <#GLsizei height#>, <#GLenum format#>, <#GLenum type#>, <#size_t planeIndex#>, <#CVOpenGLESTextureRef *textureOut#>)
     CVOpenGLESTextureCacheCreateTextureFromImage (kCFAllocatorDefault,
                                                   textureCache,
@@ -510,7 +529,7 @@
                                                   /*GL_RGBA*/GL_RGBA, // opengl format
                                                   screen_info.render_texture0_width,
                                                   screen_info.render_texture0_height,
-                                                  /*GL_BGRA*/GL_BGRA, // native iOS format
+                                                  GL_RGBA, // native iOS format
                                                   GL_UNSIGNED_BYTE,
                                                   0,
                                                   &renderTexture);
@@ -533,33 +552,35 @@
     
     // great, now you're ready to render to your image.
 }
+
 -(void)readPixels{
     if (kCVReturnSuccess == CVPixelBufferLockBaseAddress(renderTarget, kCVPixelBufferLock_ReadOnly)) {
         uint8_t* pixels=(uint8_t*)CVPixelBufferGetBaseAddress(renderTarget);
-        // process pixels how you like!
-        //size_t bytesPerRow = CVPixelBufferGetBytesPerRow(renderTarget);
-        //NSLog(@"Bytes per row:%zu",bytesPerRow);
         //bgra
         int n = 0;
-        for (int i = 2; i < fission->NUM_PARTICLES*4; i+=4) {
-        //for (int i = 2; i < vertices_info.num_point_indices*4+3; i+=4) {
-            //average+=pixels[i];
-            //if (pixels[i]>0&&pixels[i-1]>0) {
+        for (int i = 0; i < fission->NUM_PARTICLES*4; i+=4) {
             if (pixels[i]>128) {
                 [fission setActive:n];
-                //fission->saps[(i-3)/8].mode = MODE_ACTIVE0;
             }
             n++;
         }
-       
-        //int x = 384;
-        //int y = 512;
-        //int b = pixels[(x*4)+(y*bytesPerRow)];
-        //int g = pixels[((x*4)+(y*bytesPerRow))+1];
-        //int r = pixels[((x*4)+(y*bytesPerRow))+2];
-        //NSLog(@"R:%i, G:%i, B:%i",r,g,b);
-        //CVPixelBufferUnlockBaseAddress(<#CVPixelBufferRef pixelBuffer#>, <#CVOptionFlags unlockFlags#>)
         CVPixelBufferUnlockBaseAddress(renderTarget, kCVPixelBufferLock_ReadOnly);
     }
+}
+//the readPixels function does not work in the simulator
+-(void)readPixelsSimulator{
+    GLint width = screen_info.render_texture0_width;
+    GLint height = screen_info.render_texture0_height;
+    NSInteger myDataLength = width * height * 4;
+    int n = 0;
+    GLubyte *buffer = (GLubyte *) malloc(myDataLength);
+    glReadPixels(0, 0, width, height, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
+    for (int i = 0; i < fission->NUM_PARTICLES*4; i+=4) {
+        if (buffer[i]>128) {
+            [fission setActive:n];
+        }
+        n++;
+    }
+    free(buffer);
 }
 @end

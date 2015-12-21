@@ -10,6 +10,8 @@
 #import "GL_OpenGL.h"
 #import "TrackTouch.h"
 #import "Fission_Interface.h"
+#import "AppDelegate.h"
+#import "GlobalAccess.h"
 @implementation GL_ViewController (GL_Touches)
 
 -(CGPoint)flipPoint:(CGPoint)p{
@@ -19,7 +21,10 @@
     [fission touchedAt:p];
 }
 -(void)touchTimerMethod:(NSTimer*)theTimer{
+    //AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    //GlobalAccess *data = appDelegate.global;
     CGPoint p = [[theTimer userInfo] locationInView:self.view];
+    //CGPoint p = [[theTimer userInfo] locationInView:data->menuView.view];
     [self touchedAt:[self flipPoint:p]];
 }
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{

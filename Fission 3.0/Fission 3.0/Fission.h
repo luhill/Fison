@@ -65,6 +65,7 @@ enum{
     bool USING_INTRO, COLLAPSING_INTRO;
     float introTimer;
     float introCountDown;
+    float collapseDelay;
 }
 -(Fission*)initWithPoints:(int)numPoints andPointer:(GL_ViewController*)ptr;
 -(void)update;
@@ -73,4 +74,5 @@ enum{
 -(void)setActive:(int)index;
 -(void)explodeField:(int)mode;
 -(void)updateIntro;
+-(void)initializeParticles;
 @end

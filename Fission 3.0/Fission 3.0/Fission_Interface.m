@@ -55,16 +55,16 @@
 -(void)particleSizeChanged:(float)val{
     float s = val*31.0+1.0;
     particleSize = s;
-    int c = floor((particleSize+32)/4);
+    int c = floor((particleSize+14)/4);
     //collisionSize = (particleSize+32)/4;
     if (c%2==0) {
         c++;//point size must be odd for proper centering in shader
     }
     collisionSize = c;
-    glLineWidth(s);
+    glLineWidth(s/10.0);
 }
 -(void)radiusChanged:(float)val{
-    radius = val*viewPtr->screen_info.view_height/2.0;
+    radius = val*MAX(viewPtr->screen_info.view_height,viewPtr->screen_info.view_width)/2.0;
 }
 -(void)speedChanged:(float)val{
     speed = val/10.0*60000.0;
@@ -74,8 +74,8 @@
     BINOMIAL_LAYERS=ceilf(log2f((float)NUM_PARTS));
 }
 -(int)particleCountChanged:(float)val1 extraParticles:(float)val2{
-    int numReg = val1*32000;
-    int numExtra = val2*(viewPtr->vertices_info.fissionPoints/2-32000);
+    int numReg = val1*128000;
+    int numExtra = val2*(viewPtr->vertices_info.fissionPoints/2-128000);
     NUM_PARTICLES = MIN(numReg+numExtra, viewPtr->vertices_info.fissionPoints);
     
     spawnIndex = MIN(spawnIndex, NUM_PARTICLES-1);
@@ -99,10 +99,10 @@
     data = delegate->global;
     
     data->menuView.slider_blur.value = 0.85;
-    data->menuView.slider_particleSize.value = 1.0/31.0;
-    data->menuView.slider_radius.value = 0.5;
+    data->menuView.slider_particleSize.value = 9.0/31.0;
+    data->menuView.slider_radius.value = 0.3;
     data->menuView.slider_speed.value = 0.5;
-    data->menuView.slider_particleFragments.value = 16.0/100.0;
+    data->menuView.slider_particleFragments.value = 64.0/100.0;
     
     [data->menuView.slider_blur sendActionsForControlEvents:UIControlEventValueChanged];
     [data->menuView.slider_particleSize sendActionsForControlEvents:UIControlEventValueChanged];

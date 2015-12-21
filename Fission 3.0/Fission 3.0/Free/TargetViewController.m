@@ -16,17 +16,29 @@
 @end
 
 @implementation TargetViewController
-@synthesize loadPhoto;
 -(void)viewDidLoad{
     [super viewDidLoad];
     _adBanner = [[ADBannerView alloc] initWithFrame:CGRectZero];
     _adBanner.delegate = self;
     [_adBanner setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     _adBanner.hidden = YES;
-    _adBanner.backgroundColor = [UIColor clearColor];
+    _adBanner.backgroundColor = [UIColor blackColor];
     [self.view addSubview:_adBanner];
     NSLog(@"Added banner");
-    //loadPhoto.hidden=yes;
+    //slider_particleCount2.enabled = NO;
+}
+-(void)setupFreeVersionUI:(UIButton*)loadPhoto slider2:(UISlider*)slider2{
+    slider2.enabled = NO;
+    loadPhoto.hidden = YES;
+}
+-(void)setUpgradeButtonVisible:(UIButton*)button hideIt:(BOOL)hide{
+    button.hidden = hide;
+}
+-(IBAction)upgradePressed:(id)sender{
+    NSLog(@"Upgrade");
+    NSURL *appStoreURL = [NSURL URLWithString:@"itms-apps://itunes.apple.com/app/id483865749"];
+    if ([[UIApplication sharedApplication]canOpenURL:appStoreURL])
+        [[UIApplication sharedApplication]openURL:appStoreURL];
 }
 -(IBAction)modeButtonPressed:(id)sender{
     UIButton *b = (UIButton*)sender;
@@ -41,12 +53,13 @@
 }
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     [super pickerView:pickerView didSelectRow:row inComponent:component];
+    //loadPhoto.hidden = YES;
+}
+-(void)hideLoadPhoto:(UIButton*)loadPhoto{
     loadPhoto.hidden = YES;
 }
 #pragma mark - ads
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-}
+
 /*!
  * @method bannerViewWillLoadAd:
  *
@@ -54,7 +67,8 @@
  * Called when a banner has confirmation that an ad will be presented, but
  * before the resources necessary for presentation have loaded.
  */
-- (void)layoutAnimated:(BOOL)animated{
+
+- (void)layoutAnimatedAd:(BOOL)animated{
     CGRect contentFrame = self.view.bounds;
     CGRect bannerFrame = _adBanner.frame;
     bool hideBanner;
@@ -72,7 +86,7 @@
     
     [UIView animateWithDuration:animated ? 0.25 : 0.0 animations:^{
         //self.view.frame = contentFrame;
-        [self.view layoutIfNeeded];
+        //[self.view layoutIfNeeded];
         _adBanner.frame = bannerFrame;
     }completion:^(BOOL finished){
         _adBanner.hidden=hideBanner;
@@ -80,11 +94,11 @@
 
 -(void)bannerViewDidLoadAd:(ADBannerView *)banner{
     NSLog(@"Recieve ad");
-    [self layoutAnimated:YES];
+    [self layoutAnimatedAd:YES];
 }
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error{
     NSLog(@"Failed to recieve ad");
-    [self layoutAnimated:YES];
+    [self layoutAnimatedAd:YES];
 }
 /*!
  * @method bannerViewActionShouldBegin:willLeaveApplication:

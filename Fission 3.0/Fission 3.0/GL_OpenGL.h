@@ -12,10 +12,12 @@
     
 }
 -(void)launchOpenGL;
--(void)pushData;
--(void)pushElements;
+-(void)pushData:(int)count;
+-(void)pushElements_point:(int)count;
+-(void)pushElements_line:(int)count;
 -(void)setBufferDrawMode:(int)buffer_index;
 -(void)useShaderProgram:(int)program;
 -(void)readPixels;
+-(void)readPixelsSimulator;
 -(void)clearFramebuffers;
 @end

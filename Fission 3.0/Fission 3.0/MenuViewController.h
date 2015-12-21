@@ -12,7 +12,7 @@
 @interface MenuViewController : CustomRotatingView <UIPickerViewDataSource,UIPickerViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>{
 @public
     NSArray *colorArray;
-    UIImage *backgroundImage;
+    //UIImage *backgroundImage;
 }
 @property(nonatomic, retain) IBOutlet UIToolbar *toolBar;
 @property(nonatomic, retain) IBOutlet RadioStyleSegmentControl_Luke *toolbarSegment;
@@ -28,6 +28,8 @@
 @property(nonatomic, retain) IBOutlet UIPickerView *colorPicker;
 @property (nonatomic, strong) UIPopoverController *imagePopOver;
 @property (nonatomic, strong) UIImagePickerController *imagePicker;
+@property(nonatomic, retain) UIImage *backgroundImage;
+@property(nonatomic, retain) IBOutlet UIButton *upgradeButton;
 -(IBAction)unwindToMenuView:(UIStoryboardSegue*)unwindSegue;
 -(IBAction)modeButtonPressed:(id)sender;
 -(IBAction)toolbarSegmentChanged:(id)sender;
@@ -45,6 +47,7 @@
 -(IBAction)showIntro:(id)sender;
 -(IBAction)renderModeSwitched:(id)sender;
 -(IBAction)showToolBar:(id)sender;
+-(IBAction)upgradePressed:(id)sender;
 -(void)showToolBarWithAnimation:(bool)animate;
 -(void)hideToolBarWithAnimation:(bool)animate;
 -(void)initilizeBackgroundPhoto;

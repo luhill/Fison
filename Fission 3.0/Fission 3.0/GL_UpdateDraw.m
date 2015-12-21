@@ -13,10 +13,15 @@
 @implementation GL_ViewController (GL_UpdateDraw)
 -(void)update{
     [fission updateIntro];
+    #if !(TARGET_IPHONE_SIMULATOR)
     [self readPixels];
+    #endif
     [fission update];
-    [self pushData];
-    [self pushElements];
+    [self pushData:fission->NUM_PARTICLES*2];
+    [self pushElements_point:fission->NUM_PARTICLES];
+    if (fission->COLOR_MODE_IMAGE || !fission->RENDER_MODE_SPRITE) {
+        [self pushElements_line:fission->NUM_ACTIVE];
+    }
 }
 -(void)glkView:(GLKView *)view drawInRect:(CGRect)rect{
     if (fission->USING_INTRO) {
@@ -24,13 +29,17 @@
         glClear(GL_COLOR_BUFFER_BIT);
         //glActiveTexture(GL_TEXTURE0);
         //[self bindTextureRender:TEXTURE_OFFSCREEN_TARGET_1];
-        [self useShaderProgram:program_intro_shader];
+        if (isLandscape) {
+            [self useShaderProgram:program_intro_shader_landscape];
+        }else{
+            [self useShaderProgram:program_intro_shader];
+        }
         glDrawArrays(GL_TRIANGLES, vertices_info.offset_screen_quad, vertices_info.num_screen_quad_vertices);
     }else{
         switch (draw_mode) {
             case DRAW_MODE_REGULAR:{
-                [self standardDraw];
-                [self displayStandardLines];
+                [self standardDrawRetained];
+                //[self displayStandardLines];
                 break;}
             case DRAW_MODE_DEBUG:{
                 //NSLog(@"Debug Draw");
@@ -47,12 +56,34 @@
         }
     }
 }
--(void)standardDraw{
-    [self setBufferDrawMode:FRAMEBUFFER_OFFSCREEN_RENDER_1];
+-(void)standardDrawRetained{
+    const GLenum discards[]  = {GL_COLOR_ATTACHMENT0};
     glEnable(GL_BLEND);
-    glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ZERO, GL_ONE_MINUS_SRC_ALPHA);
+    glColorMask(1.0, 1.0, 0.0, 0.0);
+    [self setBufferDrawMode:FRAMEBUFFER_OFFSCREEN_RENDER_2];
+    glBlendFunc(GL_ONE, GL_ONE);
+    glDisable(GL_BLEND);
+    glColorMask(0.0, 1.0, 0.0, 0.0);
+    [self drawCollisions_passive];
+    glColorMask(1.0, 0.0, 0.0, 0.0);
+    [self drawCollisions_active];
+    glColorMask(1.0, 0.0, 0.0, 0.0);
+    glDiscardFramebufferEXT(FRAMEBUFFER_OFFSCREEN_RENDER_2, 1, discards);
+    [self setBufferDrawMode:FRAMEBUFFER_OFFSCREEN_RENDER_0];
+    [self drawMap];
+    glColorMask(1.0, 1.0, 1.0, 1.0);
+    glDiscardFramebufferEXT(FRAMEBUFFER_OFFSCREEN_RENDER_0, 1, discards);
+    #if (TARGET_IPHONE_SIMULATOR)
+    [self readPixelsSimulator];
+    #endif
+    /////////////////////////////////////////////////////////////////////////////////////////
+    [self setBufferDrawMode:FRAMEBUFFER_DEFAULT];
+    glEnable(GL_BLEND);
+    //glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ZERO, GL_ONE_MINUS_SRC_ALPHA);
+    glColorMask(1.0, 1.0, 1.0, 0.0);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     [self blur];
-    
+    //glColorMask(1.0, 1.0, 1.0, 1.0);
     if (fission->COLOR_MODE_IMAGE==YES) {
         glDisable(GL_BLEND);
         [self drawParticleLines_image];
@@ -67,6 +98,13 @@
     }
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     [self drawPassiveSprites];
+    //glDiscardFramebufferEXT(FRAMEBUFFER_OFFSCREEN_RENDER_1, 1, discards);
+    glDisable(GL_BLEND);
+    ///////////////////////////////////////////////////////////////////////////////////////
+}
+-(void)standardDraw{
+    const GLenum discards[]  = {GL_COLOR_ATTACHMENT0};
+    glEnable(GL_BLEND);
     glColorMask(1.0, 1.0, 0.0, 0.0);
     [self setBufferDrawMode:FRAMEBUFFER_OFFSCREEN_RENDER_2];
     glBlendFunc(GL_ONE, GL_ONE);
@@ -75,11 +113,40 @@
     [self drawCollisions_passive];
     glColorMask(1.0, 0.0, 0.0, 0.0);
     [self drawCollisions_active];
-    
     glColorMask(1.0, 0.0, 0.0, 0.0);
+    glDiscardFramebufferEXT(FRAMEBUFFER_OFFSCREEN_RENDER_2, 1, discards);
     [self setBufferDrawMode:FRAMEBUFFER_OFFSCREEN_RENDER_0];
     [self drawMap];
     glColorMask(1.0, 1.0, 1.0, 1.0);
+    glDiscardFramebufferEXT(FRAMEBUFFER_OFFSCREEN_RENDER_0, 1, discards);
+    //#if (TARGET_IPHONE_SIMULATOR)
+    //[self readPixelsSimulator];
+    //#endif
+    /////////////////////////////////////////////////////////////////////////////////////////
+    //[self setBufferDrawMode:FRAMEBUFFER_OFFSCREEN_RENDER_1];
+    glEnable(GL_BLEND);
+    //glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ZERO, GL_ONE_MINUS_SRC_ALPHA);
+    glColorMask(1.0, 1.0, 1.0, 0.0);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    [self blur];
+    glColorMask(1.0, 1.0, 1.0, 1.0);
+    if (fission->COLOR_MODE_IMAGE==YES) {
+        glDisable(GL_BLEND);
+        [self drawParticleLines_image];
+        glEnable(GL_BLEND);
+    }else{
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+        if (fission->RENDER_MODE_SPRITE==YES) {
+            [self drawActiveSprites];
+        }else{
+            [self drawParticleLines];
+        }
+    }
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    [self drawPassiveSprites];
+    //glDiscardFramebufferEXT(FRAMEBUFFER_OFFSCREEN_RENDER_1, 1, discards);
+    glDisable(GL_BLEND);
+    ///////////////////////////////////////////////////////////////////////////////////////
 }
 -(void)blur{
     [self useShaderProgram:program_blur_shader];
@@ -89,7 +156,7 @@
     [self useShaderProgram:program_line_image_shader];
     glActiveTexture(GL_TEXTURE0);
     [self bindTexture:TEXTURE_BACKGROUND];
-    glLineWidth(fission->particleSize);
+    glLineWidth(fission->particleSize/2.0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexLineBuffer);
     glDrawElements(GL_LINES, fission->NUM_ACTIVE, GL_UNSIGNED_INT, (void*)0);
 }
@@ -97,7 +164,7 @@
     [self useShaderProgram:program_particle_shader];
     glActiveTexture(GL_TEXTURE0);
     [self bindTexture:TEXTURE_COLOR];
-    glLineWidth(fission->particleSize);
+    glLineWidth(fission->particleSize/2.0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexLineBuffer);
     glDrawElements(GL_LINES, fission->NUM_ACTIVE, GL_UNSIGNED_INT, (void*)0);
 }
@@ -142,7 +209,7 @@
 -(void)displayStandardLines{
     [self setBufferDrawMode:FRAMEBUFFER_DEFAULT];
     glActiveTexture(GL_TEXTURE0);
-    [self bindTextureRender:TEXTURE_OFFSCREEN_TARGET_1];
+    //[self bindTextureRender:TEXTURE_OFFSCREEN_TARGET_1];
     //glActiveTexture(GL_TEXTURE1);
     //[self bindTexture:TEXTURE_BACKGROUND];
     [self renderToScreen];
